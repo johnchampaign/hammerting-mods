@@ -23,7 +23,7 @@ your own copy of the game and patches it on your machine.
 2. Close Hammerting.
 3. Install:
    - **Windows:** double-click `install.bat`.
-   - **Linux:** run `python3 tools/hmod.py install recommended` in the unzipped folder.
+   - **Linux:** run `./install.sh` in the unzipped folder (see [Playing on Linux](#playing-on-linux)).
 
    The installer finds the game through Steam. If your game is somewhere unusual, set the
    `HAMMERTING_DIR` environment variable to the game folder (the one with `game.wkz`).
@@ -42,10 +42,29 @@ is safe.
 
 ## Uninstall
 
-- **Windows:** double-click `uninstall.bat`. **Linux:** `python3 tools/hmod.py uninstall`.
+- **Windows:** double-click `uninstall.bat`. **Linux:** `./uninstall.sh`.
 - Then clear the Launch Options.
 
 Steam's "Verify integrity of game files" also restores the original DLLs.
+
+## Playing on Linux
+
+Hammerting has no Linux build, but runs well under Steam's Proton, and the mods work the same way
+there. They were developed and tested on Linux with Proton Experimental.
+
+1. In Steam, right-click Hammerting → Properties → Compatibility, tick "Force the use of a specific
+   Steam Play compatibility tool", and pick **Proton Experimental**. Start the game once without
+   mods so Steam sets it up, then quit.
+2. Python 3 comes with most distributions (`python3 --version` to check; otherwise install it with
+   your package manager).
+3. Unzip the release, then in a terminal in that folder run `./install.sh`. It installs the
+   recommended set; `./install.sh natural_healing ground_pickup` installs just the mods you name.
+4. Set the Launch Options as in step 4 above.
+
+The installer looks for the game in `~/.local/share/Steam`, `~/.steam/steam` and the Flatpak Steam
+folder, and in every library listed in Steam's `libraryfolders.vdf`. For a game elsewhere, run
+`HAMMERTING_DIR=/path/to/Hammerting ./install.sh`. On a Steam Deck the same steps should work from
+Desktop Mode (not tested there).
 
 ## Choosing mods
 
@@ -65,7 +84,7 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - **World Conquest** needs a third of the overworld owned or allied, not all of it.
   (`reachable_diplomacy`)
 - **New victory, Mountainking of Lore:** finish the research tree and hold 100 Mountain Lore and
-  100 Trade Lore. (`research_victory`)
+  100 Trade Lore. Victory Conditions shows your progress. (`research_victory`)
 - A Star of Mara costs 9 gems of any kind instead of 243 gems of one kind. (`gem_cut_rebalance`)
 
 **Crashes and soft-locks**
@@ -131,10 +150,20 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
   overworld. (`teardown_hint`, `attribute_hint`, `away_dwarf_alerts`)
 - Blocks you place above walkways stay put. (`keep_placed_blocks`)
 
+## Optional: smaller map
+
+`small_map` (not in the recommended set) makes new random maps 768 x 768 tiles instead of
+1024 x 1024. The Underworld, the only source of Sulphur Sprouts, then starts about 520 tiles below
+your colony instead of about 750, with fewer repeats of the same biomes on the way down. Only new
+games change. Add it with `./install.sh recommended small_map` or by adding a `small_map` line to
+`mods/recommended.txt`. One generated map was checked (all five biomes and every ore present); it
+hasn't been played through.
+
 ## Notes
 
 - Steam achievements still unlock normally, including the victory ones. The new research victory
-  has no achievement of its own.
+  has no achievement of its own. Its Victory Conditions entry appears when Metallurgy is researched,
+  so a game that already had Metallurgy before you installed won't list it, but can still win it.
 - A Large Vault built before installing keeps its 50,000-gold size. `tools/save.py vaultcap` can
   rewrite one in a copy of a save: see [`mods/README.md`](mods/README.md).
 - `docs/PLAY_STRATEGY.md` has strategy notes from a full playthrough, and `docs/BUGS.md` lists the

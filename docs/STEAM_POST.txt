@@ -12,7 +12,7 @@ No game files are included. The installer reads your own copy of the game and pa
 [list]
 [*][b]Righteous Affluence is reachable.[/b] A Large Vault holds 2,000 gold and needs to be 10% full, instead of 100% of 50,000 gold.
 [*][b]World Conquest[/b] needs a third of the overworld owned or allied instead of all of it.
-[*][b]New victory, Mountainking of Lore:[/b] finish the whole research tree and hold 100 Mountain Lore and 100 Trade Lore.
+[*][b]New victory, Mountainking of Lore:[/b] finish the whole research tree and hold 100 Mountain Lore and 100 Trade Lore. Your progress shows under Victory Conditions.
 [*]A Star of Mara costs 9 gems of any kind instead of 243 gems of one kind.
 [*]The Victory Conditions panel shows how full your vaults are against the target.
 [/list]
@@ -63,7 +63,7 @@ You need [url=https://www.python.org/downloads/]Python 3[/url] (3.10 or newer). 
 [olist]
 [*]Download the zip from the [url=https://github.com/johnchampaign/hammerting-mods/releases/latest]releases page[/url] and unzip it anywhere.
 [*]Close Hammerting.
-[*]Windows: double-click [b]install.bat[/b]. Linux (Proton): run [code]python3 tools/hmod.py install recommended[/code] in the unzipped folder.
+[*]Windows: double-click [b]install.bat[/b]. Linux: run [code]./install.sh[/code] in the unzipped folder (see Playing on Linux below).
 [*]In Steam, right-click Hammerting > Properties > General > Launch Options, and paste:
 [code]%command% --game-extra-archives danger_zone/hammerting_mods.wkz[/code]
 [*]Play!
@@ -73,7 +73,19 @@ The installer finds the game through Steam. If it can't, set the HAMMERTING_DIR 
 
 [b]Choosing mods:[/b] mods\recommended.txt lists what gets installed. Delete a line and run install.bat again to leave that mod out.
 
-[b]Uninstall:[/b] double-click [b]uninstall.bat[/b] (Linux: [code]python3 tools/hmod.py uninstall[/code]), then clear the Launch Options. Steam's "Verify integrity of game files" also restores the original game files.
+[b]Optional smaller map:[/b] add a [i]small_map[/i] line to mods\recommended.txt to make new maps 768 x 768 instead of 1024 x 1024. The Underworld then starts about 520 tiles below your colony instead of about 750. Only new games change.
+
+[b]Uninstall:[/b] double-click [b]uninstall.bat[/b] (Linux: [code]./uninstall.sh[/code]), then clear the Launch Options. Steam's "Verify integrity of game files" also restores the original game files.
+
+[h2]Playing on Linux[/h2]
+Hammerting has no Linux build, but it runs well under Proton, and the mods were developed and tested there.
+[olist]
+[*]In Steam, right-click Hammerting > Properties > Compatibility, tick "Force the use of a specific Steam Play compatibility tool" and pick [b]Proton Experimental[/b]. Start the game once without mods, then quit.
+[*]Check you have Python 3 ([code]python3 --version[/code]); most distributions include it.
+[*]Unzip the release and run [code]./install.sh[/code] in that folder.
+[*]Set the Launch Options as above.
+[/olist]
+If your game is in an unusual place, run [code]HAMMERTING_DIR=/path/to/Hammerting ./install.sh[/code]. Steam Deck Desktop Mode should work the same way, but I haven't tried it.
 
 [h2]Good to know[/h2]
 [list]
