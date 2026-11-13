@@ -36,6 +36,7 @@ class Context:
         self.files = {}
         self._locs = {}
         self.dll_patches = []
+        self.mods = []              # names of the mods being built, in order
 
     def read(self, name):
         if name in self.files:
@@ -110,6 +111,7 @@ def expand(names):
 
 def build(names, out):
     ctx = Context()
+    ctx.mods = list(names)
     for n in names:
         load_mod(n).apply(ctx)
     ctx.finish()

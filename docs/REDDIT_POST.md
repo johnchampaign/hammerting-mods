@@ -4,7 +4,7 @@ Title: I fixed 53 bugs in Hammerting so it can actually be finished: free mod pa
 
 Hammerting stopped getting updates after 1.0, and it still has crashes, soft-locks, dwarves who wander into lava, hauling loops and two victory conditions that are practically out of reach. I played it through to the end and fixed what I hit along the way. The result is a free, open-source set of 53 mods.
 
-**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.1.0.
+**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.2.0.
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 
@@ -86,6 +86,7 @@ If your game is in an unusual place, run `HAMMERTING_DIR=/path/to/Hammerting ./i
 # Good to know
 
 * Made for the current Steam version (1.2.39), on Windows or Linux with Proton.
+* To check the mods are loaded, look for "+ Fix-Up Mods" after the version number in the main menu's corner. The Mods button there lists every installed mod.
 * Steam achievements still unlock normally. The new research victory has no achievement of its own.
 * Mountainking of Lore shows up under Victory Conditions once you research Metallurgy, together with Righteous Affluence. A game that already had Metallurgy before you installed won't list it, but you can still win it there.
 * A Large Vault you built before installing keeps its old 50,000-gold size. The GitHub page explains how to resize it in a copy of your save.

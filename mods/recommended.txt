@@ -52,3 +52,4 @@ building_self_repair
 rail_queue_keep
 gem_cut_rebalance
 research_victory
+mods_menu
