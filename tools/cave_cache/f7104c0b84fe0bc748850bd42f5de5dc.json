@@ -1,0 +1,1 @@
+{"code": "83bb7802000018730d488383a002000003e9b45ae4ff4883c4205bc383b978020000187305e9e688e4ff31c0c3", "labels": {"ATTACK_RESUME": 2152013834, "BASE": 2153825600, "CAP": 24, "SPAWN_WAVE": 2152025680, "attack_gate": 0, "attack_skip": 22, "end": 45, "start": 0, "wave_fail": 42, "wave_gate": 28}, "source": "../mods/invader_cap/cave.s"}

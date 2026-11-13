@@ -1,0 +1,16 @@
+# Game content extracted from game.wkz or dumped from the PDBs: never commit
+re/extract/
+re/pdb/
+# Build output (archives built from game-derived data)
+build/
+mods/*/build/
+mods/*/build_rules.ninja
+mods/_probe/
+# Python caches
+__pycache__/
+*.pyc
+# Local development notes (machine paths, session instructions)
+CLAUDE.md
+.claude/
+# boot.exe --help output
+re/boot_help.txt
