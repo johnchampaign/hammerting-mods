@@ -172,3 +172,18 @@ a harvest order since second 2413; 2 Citadel at stage 2 with timers 8414 / 8541;
 Test: Citadel 3621 timer set to 8100 (overdue) and next_check 8100. At the next autosave (now 8344)
 3621 was at stage 3 (ripe), 3991 (timer 8541, the control) still stage 2. Unpatched the exact
 test would never have advanced 3621.
+
+## Harvest jobs (harvest_wild_crops, 2026-11-13)
+- Ripe means the stage has loot. set_stage on such a stage calls 0x1801f3af0, which sets the type's dirty flag
+  (types at plant_system+0xa0, 0x20 each: plant index list +8, count +0x10, dirty +0x18, enabled +0x19) and the
+  plant's workplace (+0x18) from the nav graph. Every plant is in its type's list (add_plant), wild or sown.
+- plant_system::update_harvesting (0x1801f3e70) sets each type's enabled flag from the Cave Farms' queues: status
+  0 with no Cave Farm entry for the crop, 1 when an entry has nothing to do (target met), 2 when it wants more;
+  enabled = status != 1, and a change marks the type dirty.
+- sensor_harvest_update calls plant_system_update_workplace_positions (0x1801ea290): for each dirty, enabled type,
+  every plant with auto_tend (+0x30) and a workplace becomes a JOB_HARVEST (update_harvest_jobs). Wild plants
+  (auto_tend 0) were skipped at 0x1801ea3cd, so they only got harvested through the plant window's Harvest
+  button (order_interact, accepted only when ripe). auto_tend's only other reader is plant_system_harvest
+  (0x1801e9c69: reset to stage 0/1, or destroy the plant).
+- Map cells: map = [[plant_system+0x10]+0x40], cells u32 at +8, width in 16-tile blocks at +0x30, index
+  ((by * wb + bx) << 8) | (ty << 4) | tx; bit 22 explored.
