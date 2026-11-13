@@ -17,7 +17,6 @@ No game files are included. The installer reads your own copy of the game and pa
 [list]
 [*]Mountainking of Lore now appears under Victory Conditions, with your research and lore counts against the targets.
 [*]Linux install scripts ([i]install.sh[/i], [i]uninstall.sh[/i]) and a Playing on Linux section below.
-[*]Optional smaller maps: see "Optional smaller map" below.
 [/list]
 
 [h2]What it changes[/h2]
@@ -87,7 +86,7 @@ The installer finds the game through Steam. If it can't, set the HAMMERTING_DIR 
 
 [b]Choosing mods:[/b] mods\recommended.txt lists what gets installed. Delete a line and run the installer again to leave that mod out.
 
-[b]Optional smaller map:[/b] add a [i]small_map[/i] line to mods\recommended.txt and run the installer again to make new maps 768 x 768 instead of 1024 x 1024. The Underworld then starts about 520 tiles below your colony instead of about 750, with fewer repeats of the same biomes on the way down. Only new games change. I checked one generated map (all five biomes and every ore were there) but haven't played one through yet.
+[b]Smaller map:[/b] to have the Underworld closer, pick Mountain Size: Small when you start a new game (800 x 800 tiles instead of the default 1088 x 1088).
 
 [b]Updating:[/b] download the new zip and run the installer again. It always patches from your original game files.
 

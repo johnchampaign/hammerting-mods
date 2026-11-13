@@ -68,7 +68,7 @@ You need [Python 3](https://www.python.org/downloads/) (3.10 or newer). On Windo
 The installer finds the game through Steam. If it can't, set the `HAMMERTING_DIR` environment variable to the game folder (the one containing `game.wkz`).
 
 * **Choosing mods:** `mods/recommended.txt` lists what gets installed. Delete a line and run the installer again to leave that mod out.
-* **Optional smaller map:** add a `small_map` line to `mods/recommended.txt` and run the installer again to make new maps 768 x 768 instead of 1024 x 1024. The Underworld then starts about 520 tiles below your colony instead of about 750, with fewer repeats of the same biomes on the way down. Only new games change. I checked one generated map (all five biomes and every ore were there) but haven't played one through yet.
+* **Smaller map:** to have the Underworld closer, pick Mountain Size: Small when you start a new game (800 x 800 tiles instead of the default 1088 x 1088).
 * **Updating:** download the new zip and run the installer again. It always patches from your original game files.
 * **Uninstall:** double-click `uninstall.bat` (Linux: `./uninstall.sh`), then clear the Launch Options. Steam's "Verify integrity of game files" also restores the original game files.
 

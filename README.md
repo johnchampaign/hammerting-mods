@@ -153,14 +153,11 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
   are loaded. The patch notes window starts with a note about the mods, and a **Mods** button in
   the main menu lists every installed mod. (`mods_menu`)
 
-## Optional: smaller map
+## Tip: a smaller map
 
-`small_map` (not in the recommended set) makes new random maps 768 x 768 tiles instead of
-1024 x 1024. The Underworld, the only source of Sulphur Sprouts, then starts about 520 tiles below
-your colony instead of about 750, with fewer repeats of the same biomes on the way down. Only new
-games change. Add it with `./install.sh recommended small_map` or by adding a `small_map` line to
-`mods/recommended.txt`. One generated map was checked (all five biomes and every ore present); it
-hasn't been played through.
+The Underworld, the only source of Sulphur Sprouts, is at the bottom of the map. To have it
+closer, pick **Mountain Size: Small** when you start a new game: the map is 800 x 800 tiles instead of
+the default 1088 x 1088 (1024 plus a border).
 
 ## Notes
 
