@@ -7,11 +7,6 @@ Hammerting stopped getting updates after 1.0, and it still has crashes, soft-loc
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 
-[h2]What's new in 1.3[/h2]
-[list]
-[*]Farmers harvest ripe wild plants on their own, so you no longer click Harvest on each one. They only go for plants on explored tiles, and a Cave Farm's crop targets still limit it.
-[/list]
-
 [h2]What's new in 1.2[/h2]
 [list]
 [*]You can now see the mods are loaded: the version in the main menu's corner now ends in [i]+ Fix-Up Mods[/i] and the mods version.
@@ -57,7 +52,6 @@ No game files are included. The installer reads your own copy of the game and pa
 [h3]Dwarves[/h3]
 [list]
 [*]Fairer job choice: far jobs no longer starve, and builders finish what they start.
-[*]Ripe wild plants are harvested without clicking Harvest on each one.
 [*]First tools are equipped automatically, and failed tool upgrades no longer reserve the tool for good.
 [*]Dwarves heal slowly on their own, and wounded dwarves follow attack orders.
 [*]Trait, gear and status bonuses to "all professions" now actually apply.

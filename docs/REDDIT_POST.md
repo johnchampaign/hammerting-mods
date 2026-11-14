@@ -38,7 +38,6 @@ No game files are included. The installer reads your own copy of the game and pa
 **Dwarves**
 
 * Fairer job choice: far jobs no longer starve, and builders finish what they start.
-* Ripe wild plants are harvested without clicking Harvest on each one.
 * First tools are equipped automatically, and failed tool upgrades no longer reserve the tool for good.
 * Dwarves heal slowly on their own, and wounded dwarves follow attack orders.
 * Trait, gear and status bonuses to "all professions" now actually apply.

@@ -173,7 +173,7 @@ Test: Citadel 3621 timer set to 8100 (overdue) and next_check 8100. At the next 
 3621 was at stage 3 (ripe), 3991 (timer 8541, the control) still stage 2. Unpatched the exact
 test would never have advanced 3621.
 
-## Harvest jobs (harvest_wild_crops, 2026-11-13)
+## Harvest jobs (2026-11-13)
 - Ripe means the stage has loot. set_stage on such a stage calls 0x1801f3af0, which sets the type's dirty flag
   (types at plant_system+0xa0, 0x20 each: plant index list +8, count +0x10, dirty +0x18, enabled +0x19) and the
   plant's workplace (+0x18) from the nav graph. Every plant is in its type's list (add_plant), wild or sown.
@@ -187,3 +187,9 @@ test would never have advanced 3621.
   (0x1801e9c69: reset to stage 0/1, or destroy the plant).
 - Map cells: map = [[plant_system+0x10]+0x40], cells u32 at +8, width in 16-tile blocks at +0x30, index
   ((by * wb + bx) << 8) | (ty << 4) | tx; bit 22 explored.
+- Removing the enabled gate (0x1801ea372 `cmp byte [rdi+0x19],0; je` -> `jmp +8`) was tried on a copy of
+  SouthXanforge_75, where all 23 sown crops sat ripe across savegames 72-75: the job data already had a harvest
+  workplace for 6 crop types (7 after), and in 5 game minutes only one Toncap was harvested. So in that colony
+  the crops had harvest jobs and farmers didn't take them; why (farming tools, priority, job choice) is open.
+- A mod giving wild plants (auto_tend 0) jobs at 0x1801ea3cd worked (released in 1.3.0 as harvest_wild_crops)
+  but was removed: the user wanted sown crops, which already get jobs.

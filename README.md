@@ -124,8 +124,6 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - One meeting no longer turns the whole colony into enemies. (`meeting_tone_scale`)
 - Dwarves no longer freeze waiting for a chat partner, hover in mid-air, or camp at the starting
   chest. (`chat_partner_release`, `fall_when_idle`, `greed_purse_guard`)
-- Ripe wild plants are harvested by farmers without a Harvest order on each one (explored tiles
-  only; a Cave Farm's crop targets still limit it). (`harvest_wild_crops`)
 - Stepped tunnels are walked at normal speed, and rock behind a door gets dug.
   (`step_pace`, `door_dig_reach`)
 
