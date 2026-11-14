@@ -52,4 +52,5 @@ building_self_repair
 rail_queue_keep
 gem_cut_rebalance
 research_victory
+harvest_priority
 mods_menu

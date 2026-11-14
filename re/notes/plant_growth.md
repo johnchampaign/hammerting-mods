@@ -190,6 +190,12 @@ test would never have advanced 3621.
 - Removing the enabled gate (0x1801ea372 `cmp byte [rdi+0x19],0; je` -> `jmp +8`) was tried on a copy of
   SouthXanforge_75, where all 23 sown crops sat ripe across savegames 72-75: the job data already had a harvest
   workplace for 6 crop types (7 after), and in 5 game minutes only one Toncap was harvested. So in that colony
-  the crops had harvest jobs and farmers didn't take them; why (farming tools, priority, job choice) is open.
+  the crops had harvest jobs and farmers didn't take them.
+- Why: the job priority. update_harvesting fills a per-type priority array starting at 0 (Low, r14 = 0 from
+  0x1801f3ea4) and raises it to a Cave Farm's haul priority only for crops a Cave Farm entry covers; the type
+  entry keeps it at +0x1c and update_workplace_positions passes it at 0x1801ea91f. Read live in SouthXanforge_75:
+  every type +0x1c = 0, farming skill positive for all 23 dwarves. With +1000 per priority level, Low harvests
+  lose to every Normal job. `mods/harvest_priority` raises it to High: all ripe crops but the switched-off
+  Toncap were harvested and resown within 4 game minutes.
 - A mod giving wild plants (auto_tend 0) jobs at 0x1801ea3cd worked (released in 1.3.0 as harvest_wild_crops)
   but was removed: the user wanted sown crops, which already get jobs.
