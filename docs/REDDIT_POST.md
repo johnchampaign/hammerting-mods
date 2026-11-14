@@ -4,7 +4,7 @@ Title: I fixed 53 bugs in Hammerting so it can actually be finished: free mod pa
 
 Hammerting stopped getting updates after 1.0, and it still has crashes, soft-locks, dwarves who wander into lava, hauling loops and two victory conditions that are practically out of reach. I played it through to the end and fixed what I hit along the way. The result is a free, open-source set of 53 mods.
 
-**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.3.0.
+**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.4.0.
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 

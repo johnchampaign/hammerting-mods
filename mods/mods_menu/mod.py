@@ -24,7 +24,7 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.3.0'
+MODS_VERSION = '1.4.0'
 URL = 'github.com/johnchampaign/hammerting-mods'
 
 DESCRIPTION = 'Menus show the mods version and news, and a Mods button lists the installed mods'
