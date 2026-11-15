@@ -267,3 +267,40 @@ Tested on a copy of savegame17 (1 run, all mods plus `_test_quiet`, about 14 log
 **Dead end.** Editing `fixed_transform_system/data.bin` to put dwarves in the pocket doesn't strand them: live they read the colony's reach, their counters stayed at 0, and at least one walked out in seconds. Probably the saved route data, not traced. That's why the guard and stress runs force the check instead.
 
 Not tested: a dwarf in the overworld or seated in a vehicle (both are skipped in the code, read not run), a colony whose entrance really is cut off, more than one dwarf really stranded at once, long play. Items he was carrying and jobs he held weren't checked one by one. A stuck dwarf with no graph position reads as not stranded, so this doesn't cover the hovering cases above.
+
+## Dwarf frozen in a diagonal shaft (2026-11-15, GreatHvitforge savegame79)
+Torner (2151) stood at 546.5, 692 from before the 13:46 autosave to the 13:49 save, with a haul claim (type 2) on a
+loose copper ore at 523, 685, and no idle alert. The tile is in a 2-wide diagonal shaft (545..556, 691..701,
+explored between 13:07 and 13:46): each step has floor and one open tile above, and the next step up is diagonal
+under solid rock. The live tile graph has no node anywhere in the shaft (no edges, so no nodes), so his tile has
+none. His "movement" query still reported the colony's 1383 reachable nodes, so the job broker kept giving him
+jobs and ALERT_IS_STRANDED (and stranded_rescue) didn't fire. Saved graph_position types looked normal (WALK, tile).
+Reloading the save freed him: two seconds after unpausing he was at 485.5, 718 and walking normally. How he got
+into the shaft is not known.
+Follow-up the same day (tests on `hmtest_shaft`, a savegame79 copy with the shaft refilled and ordered dug again):
+- The dug shaft is walkable: one WALK edge, 544,690 -> 555,701, cost 16.5, with no nodes between. Torner's 546.5, 692
+  lies on it exactly at a step point. A reload fails to snap him (no node at his tile, range 0), so he falls and is
+  put back on the graph; that is why the reload freed him. Dwarves crossed the re-dug shaft many times without stalling.
+- Diagonal WALK edges run walk_stairs (`movement_register_core_behaviors` 0x1803a29c0: WALK edges with equal y use the
+  plain walk, otherwise stairs). bt_walk_stairs_enter writes MOVEMENT_STATE_JUMP (0x1804dd756) and its exit STAND.
+  Torner's saved MOVEMENT_STATE was JUMP at 13:46 and 13:49 while every other dwarf read STAND or CLIMB, so he was
+  inside a stairs (or jump) behaviour, standing on a step point, for at least 3 minutes. Save KV layout:
+  key_value.bin = arrays (u16 entity ids), (u64 count per entity), (u64 key hashes, flattened), (16 bytes per key:
+  u64 type 0x10003, u64 value hash).
+- Each stairs step: event_callback_stairs_anim_done (0x1804dc980) puts the dwarf at the step's end and plays the next
+  step, or at the walk's end turns animation driving off and sets the byte bt_walk_stairs_update (0x1804dda70)
+  waits for. The update has no timeout. The world position changes only at step ends.
+- Simulations with `mods/_test_stairs_drop`: dropping a step's animation-done event left the dwarf animation driven
+  with no animation, and the game crashed about a second later in locomotion_system_update (0x180413b08), so
+  Torner's stall was not that. Not setting the walk-end byte did not stall the dwarf (something else ends the
+  behaviour). What stalled Torner is still unknown.
+- `mods/stairs_timeout` (experimental): bt_walk_stairs_update returns BT_FAILURE once the dwarf's position has not
+  changed for 10 game seconds. Never fired in about 20 game minutes of normal play; a 0.05-second limit fired 4,000+
+  times with no errors (dwarves on stairs then re-planned in a loop, the rest played on).
+- Soak test (2026-11-15, copy of savegame79, recommended mods minus stranded_rescue, plus stairs_timeout,
+  _test_drop_log for the GAMESTATE-MOVE stairs lines and _test_no_achievements): 45 real minutes at speed 3, ticks
+  113703-232707 (about 3.3 game hours), 15,611 stairs walks, 24 attack pauses. No timeout, no stall, no crash. The
+  stall that held Torner is rare and its trigger is still unknown. Ruled out: hit reactions (ANIMHASH_HIT_REACT is
+  only referenced by init_animhash) and weapon attacks (played from the bt_do_weapon_attack node, which runs only
+  after the walk node has exited). stairs_timeout now also stores the last dwarf it freed and his position after
+  its counter (.hmod 0x2f84), for the next time.
