@@ -4,7 +4,8 @@
   Both are a text whose one %Oproperty_comp shows the chain GAME_VERSION (ui/main_menu/main_menu
   and ui/version_ingame); the mod appends to the chain.
 - The news window (ui/main_menu/newsletter, the patch notes shown at start and by Newsletter) gets
-  a section about the mods above the 1.2.39 notes. Its text is one plain text component.
+  a section about the mods above the 1.2.39 notes, ending with what changed in the latest versions
+  (WHATS_NEW). Its text is one plain text component.
 - A Mods button between Credits and Exit (main menu and pause menu) opens a window listing every
   installed mod with its description. The buttons are records under LABEL__BUTTONS in
   ui/main_menu/start, stacked in record order (their stored y offsets aren't used). The new button
@@ -24,7 +25,15 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.4.0'
+MODS_VERSION = '1.5.0'
+# Shown in the news window, newest first; the first NEWS_VERSIONS entries are listed. Keep each to a line or two.
+WHATS_NEW = [
+    ('1.5.0', 'New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still '
+              '"working" but not moving, gives up the step after 10 seconds and finds a new route. Not installed '
+              'by default; add it to |YELLOW|mods/recommended.txt|!| to try it.'),
+    ('1.4.0', 'Ripe crops are harvested promptly instead of standing until you press Harvest on each plant.'),
+]
+NEWS_VERSIONS = 3
 URL = 'github.com/johnchampaign/hammerting-mods'
 
 DESCRIPTION = 'Menus show the mods version and news, and a Mods button lists the installed mods'
@@ -67,7 +76,9 @@ def add_news(ctx, count):
             f'⦿ {count} unofficial mods are installed. |YELLOW|Mods|!| in the main menu lists them.\n'
             f'⦿ To add or remove mods, close the game, edit |YELLOW|mods/recommended.txt|!| and run the '
             f'installer again.\n'
-            f'⦿ Updates, details and bug reports: |YELLOW|{URL}|!|\n')
+            f'⦿ Updates, details and bug reports: |YELLOW|{URL}|!|\n'
+            f'\n|GOLD26**|What\'s new|!|\n\n'
+            + ''.join(f'⦿ {version}: {text}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS]))
     r.set(E.TEXT, E.set_text(r.get(E.TEXT), news + old))
     ctx.write(NEWS, E.pack(recs))
 
