@@ -40,3 +40,17 @@ above 1 are fine, and negative values mean 0%.
 ## Reading values
 `tools/modvals.py [--funcs] PREFIX...` prints computed values per entity list from the running game (read-only).
 Values refresh while the game runs; one list per entity, dwarves near the start of the list array.
+
+## Item rarity roll (2026-11-14, code read only)
+In `default_production_complete_cbck`, 0x1802d8c2a..0x1802d8eb5 (pristine DLL). It reads the recipe profession's
+`%s_CRIT_SUCCESS` (profession record +0x4a0, the hash of the name stored at +0x468 in `database_full_init`, 0x180274276)
+and the next entry (+0x4e0, presumably `%s_CRIT_FAILURE`; stored at 0xd4(rbp), not used by the roll), evaluated on entity
+[[rbp+0xd980]+0x60] (the crafter, presumably). It makes 5 rolls. Each one is a PCG roll 0-99 (rejection below 0x60, then
+mod 100) that succeeds if roll > 100 - 100p, with p = v * 5 / d * 0.1 = v / (2d), clamped 0..1. d is 2 with no rarity yet,
+else level index + 3. So the chance per roll is v/4 Common->Uncommon, v/6 to Rare, v/8 to Epic, v/10 to Mythic. Each success
+raises the level by one, stopping at the last modifier in the list. If any roll succeeds, the list entry is added with the
+`modifier_system_add_modifier` import (0x180599578). The list ([rsp+0x50], count r15) is built just before at 0x1802d8140.
+Which items have one wasn't traced: equipment_modifiers_cdb lists ME_RARITY for tools, weapons and lanterns. Inputs are not
+read by the roll. Inheritance copies only CLS_ITEM-classed modifier comps (`material_subtypes.md`), and whether rarity is
+one of them wasn't checked. In-game text: Dwarfelopedia "Item Rarity" (core.loc), five levels, "the higher the level,
+the better the item". What a rarity changes on the item was not traced.

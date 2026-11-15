@@ -51,3 +51,17 @@
   to carry. Carts and haulers move ground items, building outputs and overworld goods into storage, and
   production demand pulls inputs out of storage into buildings. The start chest (type 0x01) is not skipped, so
   storages do empty it.
+
+## Storages start at Low haul priority (2026-11-13, code read; TelSolkeld savegame77)
+- Default priority (+0x54 of the 0x78-byte destination record, save record byte +12) is set by type bits in
+  `add_dest_entity` (0x1801de872..0x1801de8c6, and the same logic at 0x1801de8d6 for the other path): start 1 (Normal);
+  type 0x04 (production) -> 2; else type 0x02 (storage) -> 0 (`cmovne ebx` at 0x1801de8a2 / 0x1801de8db); 0x20 -> 0;
+  0x40 (start chest) -> 1; 0x80 -> 2. `haul_system_set_job_priority` (0x1801d88a0) is the panel's setter.
+- So every player-built storage (Storage, Stone Chest) starts Low (+0 in the Job Broker score) against Normal (+1000) craft
+  jobs and High (+2000) production hauls, and loose items reach it only when a dwarf has nothing else to do. Saves agree:
+  storages first appear at 0 unless the player raised them.
+- TelSolkeld savegame77: start chest 320/320 (Normal), Storage 2337 at Low with all sources (0xff) and an all-class filter,
+  most of its 600 slots free; 635 loose items, median rot 44%; of 864 loose in savegame76, 850 were still loose in the
+  next autosave. JOB_HAUL desired workers 1.
+- Correction to `mods/ground_pickup`: GENERAL_STORAGE (source mask 0x04) is the start chest only. Player-built storages
+  get the template's 0xff (all sources) in every save checked.
