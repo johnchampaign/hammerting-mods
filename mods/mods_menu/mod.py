@@ -12,6 +12,9 @@
   is a copy of the Newsletter button and its label without the Newsletter event: its click closes
   an open Mods window and spawns entity/ui/main_menu/hmod_mods.entity (SPAWN_CHILD_ENTITY, as the
   top bar spawns its overlays). That window is a copy of the news window with its own id and text.
+The window and news texts are plain text in the language the game had at install (ctx.language, from its
+settings.txt or Steam): a long text can't follow the language in game (tools/entity.py). Every other mod text
+is in the localization tables, which hmod copies into each language (mods/translations/).
 Record and component layouts are in tools/entity.py. Data only.
 """
 import os
@@ -25,9 +28,11 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.5.0'
+MODS_VERSION = '1.6.0'
 # Shown in the news window, newest first; the first NEWS_VERSIONS entries are listed. Keep each to a line or two.
 WHATS_NEW = [
+    ('1.6.0', "The mods' texts now come in all ten of the game's languages and follow the language in Options. "
+              'Before, other languages showed raw names or the old wording.'),
     ('1.5.0', 'New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still '
               '"working" but not moving, gives up the step after 10 seconds and finds a new route. Not installed '
               'by default; add it to |YELLOW|mods/recommended.txt|!| to try it.'),
@@ -46,7 +51,11 @@ WINDOW_ID = 'HMOD_MODS'
 FRAME_SIZE = 0x12c4         # float width, height
 CHAIN = 0x4c48              # u8 1, then a compiled chain run when the record is created
 BUTTON_STEP = 62            # the buttons' spacing (LABEL__SAVE sits at y -78, LABEL__EXIT at -444)
-TITLE = f'|GOLD26**|Hammerting Fix-Up Mods - Version {MODS_VERSION}|!|'
+WHATS_NEW_TITLE = "What's new"
+
+
+def title(ctx, lang):
+    return f"|GOLD26**|{ctx.tr('Hammerting Fix-Up Mods - Version {version}', lang).format(version=MODS_VERSION)}|!|"
 
 
 def show_version(ctx):
@@ -72,13 +81,15 @@ def add_news(ctx, count):
     r = scroll_text(recs)
     old = E.text(r.get(E.TEXT))
     assert old.startswith('\n\n\n|GOLD26**|Quality of Life 4 Update'), old[:60]
-    news = (f'\n\n\n{TITLE}\n\n'
-            f'⦿ {count} unofficial mods are installed. |YELLOW|Mods|!| in the main menu lists them.\n'
-            f'⦿ To add or remove mods, close the game, edit |YELLOW|mods/recommended.txt|!| and run the '
-            f'installer again.\n'
-            f'⦿ Updates, details and bug reports: |YELLOW|{URL}|!|\n'
-            f'\n|GOLD26**|What\'s new|!|\n\n'
-            + ''.join(f'⦿ {version}: {text}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS]))
+    lang = ctx.language
+    tr = lambda text: ctx.tr(text, lang)  # noqa: E731
+    news = (f'\n\n\n{title(ctx, lang)}\n\n'
+            f"⦿ {tr('{count} unofficial mods are installed. |YELLOW|Mods|!| in the main menu lists them.').format(count=count)}\n"
+            f"⦿ {tr('To add or remove mods, close the game, edit |YELLOW|mods/recommended.txt|!| and run the installer again.')}\n"
+            f"⦿ {tr('Updates, details and bug reports: |YELLOW|{url}|!|').format(url=URL)}\n"
+            f'\n|GOLD26**|{tr(WHATS_NEW_TITLE)}|!|\n\n'
+            + ''.join(f'⦿ {version}: {tr(text)}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS]))
+    # The game's own 1.2.39 notes below are English in every language.
     r.set(E.TEXT, E.set_text(r.get(E.TEXT), news + old))
     ctx.write(NEWS, E.pack(recs))
 
@@ -92,18 +103,19 @@ def short(description):
 def mods_window(ctx):
     sys.path.insert(0, os.path.dirname(HERE))
     from importlib.util import module_from_spec, spec_from_file_location
-    lines = []
+    descriptions = []
     for name in ctx.mods:
         spec = spec_from_file_location(f'hmod_desc_{name}', os.path.join(os.path.dirname(HERE), name, 'mod.py'))
         mod = module_from_spec(spec)
         spec.loader.exec_module(mod)
-        lines.append(f'⦿ |YELLOW|{name}|!|: {short(mod.DESCRIPTION)}')
-    text = (f'\n\n\n{TITLE}\n\n'
-            f'Unofficial fixes for Hammerting 1.2.39. Details, updates and bug reports: '
-            f'|YELLOW|{URL}|!|\n\n'
-            f'To change which mods are installed, close the game, edit |YELLOW|mods/recommended.txt|!| '
-            f'in the mods folder and run the installer again.\n\n'
-            f'|GOLD20**|Installed mods ({len(lines)}):|!|\n' + '\n'.join(lines) + '\n')
+        descriptions.append((name, short(mod.DESCRIPTION)))
+    lang = ctx.language
+    tr = lambda text: ctx.tr(text, lang)  # noqa: E731
+    lines = [f'⦿ |YELLOW|{name}|!|: {tr(d)}' for name, d in descriptions]
+    text = (f'\n\n\n{title(ctx, lang)}\n\n'
+            f"{tr('Unofficial fixes for Hammerting 1.2.39. Details, updates and bug reports: |YELLOW|{url}|!|').format(url=URL)}\n\n"
+            f"{tr('To change which mods are installed, close the game, edit |YELLOW|mods/recommended.txt|!| in the mods folder and run the installer again.')}\n\n"
+            f"|GOLD20**|{tr('Installed mods ({count}):').format(count=len(lines))}|!|\n" + '\n'.join(lines) + '\n')
     recs = E.parse(ctx.read(NEWS))      # the original window, without the news section
     root = recs[0]
     root.set(E.ID, E.tag(WINDOW_ID))
@@ -119,7 +131,7 @@ def mods_window(ctx):
     r = scroll_text(recs)
     r.set(E.TEXT, E.set_text(r.get(E.TEXT), text))
     ctx.write(WINDOW, E.pack(recs))
-    return len(lines)
+    return len(descriptions)
 
 
 def add_button(ctx):

@@ -14,9 +14,14 @@ Component types used by mods:
   0x8126  trigger: u64 trigger hash, 16 zero bytes, u64 flags, u64 n, then n bytes: either
           chain_blob() and the source (an action), or a wc_tag event name to send
   0x795d  plain text: u64, u64, u64 text size, then the text and its NUL
-  0xb903  text with chains: u64, u64 text size, u64 text size, text and NUL, chain_blob() for
+  0xb903  text with chains: u64, u64, u64 text size, text and NUL, chain_blob() for
           each %Oproperty_comp, then the source text with the chains written in (`$O` after each)
   0xef05  localized label: u64, u64 2, u64 wc_hash(key), u64 key size, key and NUL
+All three start with the same two u64s: the font (a hash), then u32 flags and a float wrap width.
+
+A long text can't follow the player's language: a chain's value ('KEY'.LOCALIZE in a 0xb903) is cut off
+after 4,096 bytes (six such chains in one text crashed the game). A long label (0xef05) showed in full
+but its scroll bar didn't move in a test; mouse clicks were also being lost then, so that is unconfirmed.
 
 usage: entity.py <file.entity>    lists records, their parents and component types
 """
