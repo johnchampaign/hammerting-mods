@@ -72,6 +72,7 @@
  "No new overworld attack or generic wave while 24 invaders are alive": "侵略者が24体生存している間は、外界からの新たな襲撃や通常の襲撃の波が発生しない",
  "Not enough coin": "コインが不足",
  "Notes only: the Steam post now explains how the mods pick a language. Nothing changes in play.": "説明のみの更新：Steamの投稿で、MODが言語を選ぶ仕組みを説明するようになりました。ゲーム内容に変更はありません。",
+ "Opening and closing the language list in Options no longer crashes the game. The mods were saving some text tables in a damaged form.": "オプションの言語リストを開閉してもゲームがクラッシュしなくなりました。MODが一部のテキストテーブルを壊れた形で保存していました。",
  "Opinion changes between entities without a relation no longer crash": "関係を持たない対象同士の評価の変化で、クラッシュしなくなる",
  "Production buildings reserve inputs for one craft at a time, or a few for one-input recipes": "生産施設は一度に1回分の生産に必要な材料を確保する（材料が1種類のレシピでは数回分）",
  "Pump Maintain in Mountainhome counts only its own fluid": "故郷なる霊峰でのポンプの維持が、そのポンプの液体だけを数える",

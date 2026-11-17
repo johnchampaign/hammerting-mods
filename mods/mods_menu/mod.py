@@ -28,9 +28,11 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.6.1'
+MODS_VERSION = '1.6.2'
 # Shown in the news window, newest first; the first NEWS_VERSIONS entries are listed. Keep each to a line or two.
 WHATS_NEW = [
+    ('1.6.2', 'Opening and closing the language list in Options no longer crashes the game.'
+              ' The mods were saving some text tables in a damaged form.'),
     ('1.6.1', 'Notes only: the Steam post now explains how the mods pick a language. Nothing changes in play.'),
     ('1.6.0', "The mods' texts now come in all ten of the game's languages and follow the language in Options. "
               'Before, other languages showed raw names or the old wording.'),

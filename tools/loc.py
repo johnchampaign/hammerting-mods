@@ -1,13 +1,16 @@
 """Read and write compiled .loc localization tables.
 
 File layout (integers u64 little-endian):
-  0x00 version (1)
-  0x08 language, char[8] ("en-US")
-  0x10 offset of key hashes      (keys are wc_hash of the key name: MetroHash64)
-  0x18 offset of entry offsets   (absolute file offsets)
-  0x20 offset of entry data
-  0x28 entry count
-  hashes[count] sorted ascending, offsets[count], then the entries.
+  0x00 section count (1, or 2 in dubious_entries, items and modifier)
+  then per section, 0x28 bytes from 0x08:
+    language, char[8] ("en-US"; a second section is "any", entries shown in every language)
+    offset of key hashes      (keys are wc_hash of the key name: MetroHash64)
+    offset of entry offsets   (absolute file offsets)
+    offset of entry data
+    entry count
+  every section's hashes[count] (sorted ascending) and offsets[count], then every section's entries.
+A table written with one section but a count of 2 makes the game read the hash array as a second
+section header, whose "language" then shows up in the Options language list (and crashed it).
 
 Entry layout:
   u8 0, u32 nargs, u16 blob_end[nargs], blobs, UTF-8 text, NUL
@@ -43,14 +46,35 @@ class Entry:
                 + b''.join(self.blobs) + self.text.encode('utf-8') + b'\0')
 
 
+class Section:
+    def __init__(self, lang, entries, order):
+        self.lang = lang
+        self.entries = entries      # key hash -> Entry
+        self.order = order          # hashes in the order their data is stored
+
+
 class LocTable:
+    """A table's first section is its language (lang, entries, key, set); any others are kept as
+    they are in sections[1:]."""
+
     def __init__(self, data):
-        self.version, = struct.unpack_from('<Q', data, 0)
-        self.lang = data[8:16].rstrip(b'\0').decode()
-        hash_off, offs_off, _, count = struct.unpack_from('<4Q', data, 0x10)
-        hashes = struct.unpack_from('<%dQ' % count, data, hash_off)
-        offs = struct.unpack_from('<%dQ' % count, data, offs_off)
-        self.entries = {h: Entry.parse(data, o) for h, o in zip(hashes, offs)}
+        n, = struct.unpack_from('<Q', data, 0)
+        self.sections = []
+        for i in range(n):
+            lang = data[8 + 0x28 * i:16 + 0x28 * i].rstrip(b'\0').decode()
+            hash_off, offs_off, _, count = struct.unpack_from('<4Q', data, 16 + 0x28 * i)
+            hashes = struct.unpack_from('<%dQ' % count, data, hash_off)
+            offs = struct.unpack_from('<%dQ' % count, data, offs_off)
+            entries = {h: Entry.parse(data, o) for h, o in zip(hashes, offs)}
+            self.sections.append(Section(lang, entries, [h for _, h in sorted(zip(offs, hashes))]))
+
+    @property
+    def lang(self):
+        return self.sections[0].lang
+
+    @property
+    def entries(self):
+        return self.sections[0].entries
 
     def key(self, name):
         from wchash import wc_hash_string
@@ -61,18 +85,23 @@ class LocTable:
         self.entries[wc_hash_string(name)] = entry
 
     def pack(self):
-        hashes = sorted(self.entries)
-        count = len(hashes)
-        hash_off = 0x30
-        offs_off = hash_off + 8 * count
-        data_off = offs_off + 8 * count
-        offs, blob = [], b''
-        for h in hashes:
-            offs.append(data_off + len(blob))
-            blob += self.entries[h].pack()
-        head = struct.pack('<Q', self.version) + self.lang.encode().ljust(8, b'\0')
-        head += struct.pack('<4Q', hash_off, offs_off, data_off, count)
-        return head + struct.pack('<%dQ' % count, *hashes) + struct.pack('<%dQ' % count, *offs) + blob
+        arrays = 8 + 0x28 * len(self.sections)
+        heads, tables, blob = b'', b'', b''
+        data_start = arrays + sum(16 * len(sec.entries) for sec in self.sections)
+        for sec in self.sections:
+            hashes = sorted(sec.entries)
+            order = [h for h in sec.order if h in sec.entries] + [h for h in hashes if h not in set(sec.order)]
+            data_off = data_start + len(blob)
+            where = {}
+            for h in order:
+                where[h] = data_start + len(blob)
+                blob += sec.entries[h].pack()
+            hash_off = arrays + len(tables)
+            tables += struct.pack('<%dQ' % len(hashes), *hashes)
+            offs_off = arrays + len(tables)
+            tables += struct.pack('<%dQ' % len(hashes), *(where[h] for h in hashes))
+            heads += sec.lang.encode().ljust(8, b'\0') + struct.pack('<4Q', hash_off, offs_off, data_off, len(hashes))
+        return struct.pack('<Q', len(self.sections)) + heads + tables + blob
 
 
 if __name__ == '__main__':

@@ -72,6 +72,7 @@
  "No new overworld attack or generic wave while 24 invaders are alive": "Nessun nuovo attacco dalla superficie né ondata generica finché sono in vita 24 invasori",
  "Not enough coin": "Monete insufficienti",
  "Notes only: the Steam post now explains how the mods pick a language. Nothing changes in play.": "Solo note: il post su Steam ora spiega come le mod scelgono la lingua. Nel gioco non cambia nulla.",
+ "Opening and closing the language list in Options no longer crashes the game. The mods were saving some text tables in a damaged form.": "Aprire e chiudere l'elenco delle lingue nelle Opzioni non fa più bloccare il gioco. Le mod salvavano alcune tabelle di testo danneggiate.",
  "Opinion changes between entities without a relation no longer crash": "I cambi di opinione tra entità senza una relazione non causano più crash",
  "Production buildings reserve inputs for one craft at a time, or a few for one-input recipes": "Gli edifici di produzione riservano i materiali per una creazione alla volta, o per alcune nelle ricette con un solo materiale",
  "Pump Maintain in Mountainhome counts only its own fluid": "Il mantenimento di una pompa nella città-montagna conta solo il proprio fluido",
