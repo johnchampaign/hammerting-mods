@@ -87,6 +87,7 @@
  "Stored items don't rot faster until 90% of the entity limit": "Eingelagerte Gegenstände verrotten erst ab 90 % des Entitätenlimits schneller",
  "Tear-down and Stranded Dwarves texts say why orders wait and how to reopen a route": "Texte zu Abriss und gestrandeten Zwergen erklären, warum Befehle warten und wie man einen Weg wieder öffnet",
  "Tearing down a building. It waits its turn behind other building orders, farthest from the entrance first.": "Ein Gebäude abreißen. Der Befehl wartet hinter anderen Baubefehlen, die am weitesten vom Eingang entfernten zuerst.",
+ "The Mods window and the news now follow the language in Options too, without running the installer again.": "Das Mods-Fenster und die Neuigkeiten folgen jetzt ebenfalls der Sprache in den Optionen, ohne das Installationsprogramm erneut auszuführen.",
  "The fishing pier keeps its catch in its own inventory instead of dropping it": "Der Angelsteg behält seinen Fang im eigenen Inventar, statt ihn fallen zu lassen",
  "The incline rail that rises to the left can be built, unlocked together with the right one": "Die nach links ansteigende Steigungsschiene kann gebaut werden und wird zusammen mit der rechten freigeschaltet",
  "The mods' texts now come in all ten of the game's languages and follow the language in Options. Before, other languages showed raw names or the old wording.": "Die Texte der Mods gibt es jetzt in allen zehn Sprachen des Spiels; sie folgen der Sprache in den Optionen. Vorher zeigten andere Sprachen interne Namen oder den alten Wortlaut.",

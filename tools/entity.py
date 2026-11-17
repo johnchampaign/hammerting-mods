@@ -19,9 +19,9 @@ Component types used by mods:
   0xef05  localized label: u64, u64 2, u64 wc_hash(key), u64 key size, key and NUL
 All three start with the same two u64s: the font (a hash), then u32 flags and a float wrap width.
 
-A long text can't follow the player's language: a chain's value ('KEY'.LOCALIZE in a 0xb903) is cut off
-after 4,096 bytes (six such chains in one text crashed the game). A long label (0xef05) showed in full
-but its scroll bar didn't move in a test; mouse clicks were also being lost then, so that is unconfirmed.
+A long text in the player's language is a label (localized_label): a 20 KB one shows in full and scrolls.
+A chain's value ('KEY'.LOCALIZE in a 0xb903) is cut off after 4,096 bytes, six such chains in one text
+crashed the game, and 18 KB of literal text around one ran it out of memory.
 
 usage: entity.py <file.entity>    lists records, their parents and component types
 """
@@ -171,6 +171,13 @@ def chain_text(data, src):
     head, n, n2 = struct.unpack_from('<QQQ', data, 0)
     assert n == n2 and data[24:24 + n] == b'%Oproperty_comp\0', data[24:24 + n]
     return data[:24 + n] + chain_blob(src) + (src + '$O').encode() + b'\0'
+
+
+def localized_label(data, key):
+    """A LABEL component in the font and wrap width of the TEXT component data (all three text
+    components start with the same two u64s), showing the localized text of key."""
+    b = key.encode() + b'\0'
+    return data[:16] + struct.pack('<QQ', wc_hash_string(key), len(b)) + b
 
 
 def label(data, key):

@@ -87,6 +87,7 @@
  "Stored items don't rot faster until 90% of the entity limit": "保管された品物は、エンティティ数が上限の90%に達するまで速く腐らない",
  "Tear-down and Stranded Dwarves texts say why orders wait and how to reopen a route": "解体と立ち往生中のドワーフのテキストで、指示が待機している理由と経路を開き直す方法を説明する",
  "Tearing down a building. It waits its turn behind other building orders, farthest from the entrance first.": "建物を解体中。他の建築指示の後に順番を待ち、正門から遠いものから先に行われる。",
+ "The Mods window and the news now follow the language in Options too, without running the installer again.": "MODウィンドウとお知らせも、インストーラーを再実行しなくてもオプションの言語に従うようになりました。",
  "The fishing pier keeps its catch in its own inventory instead of dropping it": "漁業用桟橋が漁獲物を床に落とさず、自身のインベントリに保管する",
  "The incline rail that rises to the left can be built, unlocked together with the right one": "左に上る斜行線路が建築可能になり、右に上るものと一緒にアンロックされる",
  "The mods' texts now come in all ten of the game's languages and follow the language in Options. Before, other languages showed raw names or the old wording.": "MODのテキストがゲームの全10言語に対応し、オプションで選んだ言語で表示されるようになりました。以前は、英語以外の言語では内部名や古い文章が表示されていました。",

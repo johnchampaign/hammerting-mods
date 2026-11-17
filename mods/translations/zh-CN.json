@@ -87,6 +87,7 @@
  "Stored items don't rot faster until 90% of the entity limit": "存放的物品在实体数达到上限的 90% 之前不会加速腐烂",
  "Tear-down and Stranded Dwarves texts say why orders wait and how to reopen a route": "拆除和受困的矮人的文字会说明命令为何等待以及如何重新打通路线",
  "Tearing down a building. It waits its turn behind other building orders, farthest from the entrance first.": "正在拆除建筑。它会排在其他建筑命令之后，按离入口由远到近的顺序进行。",
+ "The Mods window and the news now follow the language in Options too, without running the installer again.": "模组窗口和新闻现在也会跟随选项中的语言，无需重新运行安装程序。",
  "The fishing pier keeps its catch in its own inventory instead of dropping it": "码头会将渔获存放在自身库存中，而不是丢在地上",
  "The incline rail that rises to the left can be built, unlocked together with the right one": "可以建造向左上升的斜轨道了，与向右的一同解锁",
  "The mods' texts now come in all ten of the game's languages and follow the language in Options. Before, other languages showed raw names or the old wording.": "模组文本现已支持游戏的全部十种语言，并跟随选项中设置的语言。此前，其他语言会显示内部名称或旧的措辞。",

@@ -87,6 +87,7 @@
  "Stored items don't rot faster until 90% of the entity limit": "Хранимые предметы не начинают портиться быстрее, пока не достигнуто 90% лимита сущностей",
  "Tear-down and Stranded Dwarves texts say why orders wait and how to reopen a route": "Тексты о сносе и заблудившихся дворфах объясняют, почему приказы ждут и как снова открыть путь",
  "Tearing down a building. It waits its turn behind other building orders, farthest from the entrance first.": "Сносит здание. Ждет своей очереди после других строительных приказов, начиная с самых дальних от входа.",
+ "The Mods window and the news now follow the language in Options too, without running the installer again.": "Окно модов и новости теперь тоже следуют языку в опциях, без повторного запуска установщика.",
  "The fishing pier keeps its catch in its own inventory instead of dropping it": "Рыбацкий пирс хранит улов в своем инвентаре, а не бросает его",
  "The incline rail that rises to the left can be built, unlocked together with the right one": "Наклонную железную дорогу, поднимающуюся влево, можно построить; она открывается вместе с правой",
  "The mods' texts now come in all ten of the game's languages and follow the language in Options. Before, other languages showed raw names or the old wording.": "Тексты модов теперь есть на всех десяти языках игры и следуют языку, выбранному в опциях. Раньше в других языках показывались служебные имена или старые формулировки.",

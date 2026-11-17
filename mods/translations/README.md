@@ -7,9 +7,8 @@ with no fallback to English.
 
 So when `tools/hmod.py` installs, it copies every text the mods add or change in the English tables
 into the other nine tables, translated by the file for that language here, and in English where the
-file has no entry. The Mods window and the news section are built in the language the game has at
-install time (from the game's `settings.txt`, or Steam's language for the game when the game is set
-to Default; `HMOD_LANGUAGE=de-DE` overrides it).
+file has no entry. The Mods window and the news section are built in every language too (labels
+showing `HMOD_MODS_TEXT` and `HMOD_NEWS`), so all mod texts follow the language in Options.
 
 Each file is a JSON object from the English text, exactly as the mod writes it, to the translation:
 

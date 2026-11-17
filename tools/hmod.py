@@ -18,7 +18,6 @@ usage:
 import importlib.util
 import json
 import os
-import re
 import shutil
 import sys
 
@@ -35,47 +34,14 @@ ARCHIVE_NAME = 'hammerting_mods.wkz'
 # The game's other languages. Each has one table with every key (localization/imported_<code>.loc), and a key
 # missing from the player's language shows as the key itself, with no fallback to English. So every text the
 # mods add or change in the English tables is copied into each of these, translated where
-# mods/translations/<code>.json ({English text: translation}) has it, and in English otherwise.
+# mods/translations/<code>.json ({English text: translation}) has it, and in English otherwise. A mod can
+# also give a text per language (set_localized), as mods_menu does for the Mods and news windows.
 LANGUAGES = ('de-DE', 'es-ES', 'fr-FR', 'it-IT', 'ja-JP', 'pl-PL', 'pt-BR', 'ru-RU', 'zh-CN')
 CHAIN_MARK = '%Oproperty_comp'
 
 
 def language_table(lang):
     return f"imported_{lang.lower().replace('-', '_')}"
-
-
-# Steam's names for the game's languages (appmanifest UserConfig "language").
-STEAM_LANGUAGES = {'english': 'en-US', 'german': 'de-DE', 'spanish': 'es-ES', 'french': 'fr-FR', 'italian': 'it-IT',
-                   'japanese': 'ja-JP', 'polish': 'pl-PL', 'brazilian': 'pt-BR', 'russian': 'ru-RU',
-                   'schinese': 'zh-CN'}
-SETTINGS = os.path.join('Documents', 'My Games', 'Warpzone Studios', 'tdtd', 'settings.txt')
-
-
-def player_language():
-    """The language the game shows: $HMOD_LANGUAGE, else the language chosen in the game's options
-    (--localization-language in settings.txt), else, for the Default choice, Steam's language for the
-    game. English if none is found."""
-    lang = os.environ.get('HMOD_LANGUAGE')
-    if lang:
-        return lang
-    steamapps = os.path.dirname(os.path.dirname(GAME_DIR))
-    homes = [os.path.join(steamapps, 'compatdata', '760650', 'pfx', 'drive_c', 'users', 'steamuser'),
-             os.path.expanduser('~'), os.environ.get('USERPROFILE', ''), os.environ.get('OneDrive', '')]
-    for home in homes:
-        path = os.path.join(home, SETTINGS)
-        if home and os.path.exists(path):
-            words = open(path, encoding='utf-8', errors='replace').read().split()
-            if '--localization-language' in words[:-1]:
-                lang = words[words.index('--localization-language') + 1]
-                if lang == 'en-US' or lang in LANGUAGES:
-                    return lang
-            break
-    manifest = os.path.join(steamapps, 'appmanifest_760650.acf')
-    if os.path.exists(manifest):
-        m = re.search(r'"language"\s+"(\w+)"', open(manifest, encoding='utf-8', errors='replace').read())
-        if m and m.group(1) in STEAM_LANGUAGES:
-            return STEAM_LANGUAGES[m.group(1)]
-    return 'en-US'
 
 
 def load_translations(lang):
@@ -95,7 +61,8 @@ class Context:
         self._translations = {lang: load_translations(lang) for lang in LANGUAGES}
         self.untranslated = {lang: set() for lang in LANGUAGES}
         self.texts = {}             # English text -> the game's original texts in each language, if it replaced one
-        self.language = player_language()   # for texts that can't follow the language in game (mods_menu)
+        self._localized = {}        # key hash -> {language: text}, for texts a mod builds per language
+        self.languages = ('en-US',) + LANGUAGES
         self.dll_patches = []
         self.mods = []              # names of the mods being built, in order
 
@@ -141,13 +108,7 @@ class Context:
         return [(va, old, new, note) for d, va, old, new, note in self.dll_patches if d == dll]
 
     def tr(self, text, lang):
-        """text translated into lang, or text itself (English) if there is no translation. lang None
-        (`hmod.py strings`) notes text as needed in every language and returns it."""
-        if lang is None:
-            for other in LANGUAGES:
-                if text not in self._translations[other]:
-                    self.untranslated[other].add(text)
-            return text
+        """text translated into lang, or text itself (English) if there is no translation."""
         if lang == 'en-US':
             return text
         out = self._translations[lang].get(text)
@@ -155,6 +116,13 @@ class Context:
             self.untranslated[lang].add(text)
             return text
         return out
+
+    def set_localized(self, table, key, texts):
+        """Set key in an English table to texts['en-US'] and in each other language to texts[lang],
+        for texts a mod assembles from translated pieces (mods_menu)."""
+        from wchash import wc_hash_string
+        self.loc(table).set(key, Entry(texts['en-US']))
+        self._localized[wc_hash_string(key)] = texts
 
     def finish(self):
         changed = {}
@@ -167,8 +135,8 @@ class Context:
             name = f'localization/{language_table(lang)}.loc'
             table = LocTable(self.read(name))
             for h, e in changed.items():
-                text = self.tr(e.text, lang)
-                if h in table.entries:
+                text = self._localized[h][lang] if h in self._localized else self.tr(e.text, lang)
+                if h in table.entries and h not in self._localized:
                     self.texts.setdefault(e.text, {})[lang] = table.entries[h].text
                 # A chain fills each %Oproperty_comp in order, so a translation needs as many.
                 if text.count(CHAIN_MARK) != len(e.blobs):
@@ -204,10 +172,8 @@ def expand(names):
     return out
 
 
-def build(names, out, all_languages=False):
+def build(names, out):
     ctx = Context()
-    if all_languages:
-        ctx.language = None
     ctx.mods = list(names)
     for n in names:
         load_mod(n).apply(ctx)
@@ -245,7 +211,7 @@ def main(argv):
     os.makedirs(os.path.dirname(out), exist_ok=True)
     if not os.path.exists(wkz.GAME_WKZ):
         raise SystemExit(f'Hammerting not found at {GAME_DIR}; set HAMMERTING_DIR to the game folder')
-    ctx = build(expand(rest), out, all_languages=cmd == 'strings')
+    ctx = build(expand(rest), out)
     if cmd == 'strings':
         # Texts that some language has no translation for, with the game's own translations of the text each
         # replaced, for whoever writes the translations (mods/translations/README.md).
@@ -261,7 +227,7 @@ def main(argv):
         print('  ', n)
     for dll, va, _, new, note in ctx.dll_patches:
         print(f'   {dllpatch.DLLS[dll][0]} @ {va:#x} <- {new.hex()}  ({note})')
-    print('wrote', out, f'(Mods and news windows in {ctx.language})')
+    print('wrote', out)
     gaps = {lang: len(s) for lang, s in ctx.untranslated.items() if s}
     if gaps:
         print('texts shown in English for lack of a translation:', ', '.join(f'{k} {v}' for k, v in gaps.items()))

@@ -151,16 +151,16 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - Clearer tooltips for tear-down orders, attributes, and alerts about dwarves away on the
   overworld. (`teardown_hint`, `attribute_hint`, `away_dwarf_alerts`)
 - Blocks you place above walkways stay put. (`keep_placed_blocks`)
-- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.2", so you can see the mods
+- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.3", so you can see the mods
   are loaded. The patch notes window starts with a note about the mods, and a **Mods** button in
   the main menu lists every installed mod. (`mods_menu`)
 
 ## Languages
 
 The mods' texts (alerts, hints, missions, tooltips, the Mods window and the news) come in all ten of
-the game's languages and follow the language set in the game's Options. The Mods window and the news
-section use the language the game had when you ran the installer, so run it again after switching
-languages. The translations other than English were written with an AI model, not by native
+the game's languages and follow the language set in the game's Options (the game applies a new
+language when it restarts). The game's own patch notes in the news window stay in English, as without
+the mods. The translations other than English were written with an AI model, not by native
 speakers: corrections are welcome as an issue or a pull request to `mods/translations/`.
 
 ## Tip: a smaller map

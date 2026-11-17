@@ -12,9 +12,8 @@
   is a copy of the Newsletter button and its label without the Newsletter event: its click closes
   an open Mods window and spawns entity/ui/main_menu/hmod_mods.entity (SPAWN_CHILD_ENTITY, as the
   top bar spawns its overlays). That window is a copy of the news window with its own id and text.
-The window and news texts are plain text in the language the game had at install (ctx.language, from its
-settings.txt or Steam): a long text can't follow the language in game (tools/entity.py). Every other mod text
-is in the localization tables, which hmod copies into each language (mods/translations/).
+The window and news texts are labels (HMOD_MODS_TEXT, HMOD_NEWS) set in every language's table, so they follow
+the language in Options; the game's 1.2.39 notes in the news stay English, as in the unmodded game.
 Record and component layouts are in tools/entity.py. Data only.
 """
 import os
@@ -28,9 +27,11 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.6.2'
+MODS_VERSION = '1.6.3'
 # Shown in the news window, newest first; the first NEWS_VERSIONS entries are listed. Keep each to a line or two.
 WHATS_NEW = [
+    ('1.6.3', 'The Mods window and the news now follow the language in Options too, without running the '
+              'installer again.'),
     ('1.6.2', 'Opening and closing the language list in Options no longer crashes the game.'
               ' The mods were saving some text tables in a damaged form.'),
     ('1.6.1', 'Notes only: the Steam post now explains how the mods pick a language. Nothing changes in play.'),
@@ -55,6 +56,8 @@ FRAME_SIZE = 0x12c4         # float width, height
 CHAIN = 0x4c48              # u8 1, then a compiled chain run when the record is created
 BUTTON_STEP = 62            # the buttons' spacing (LABEL__SAVE sits at y -78, LABEL__EXIT at -444)
 WHATS_NEW_TITLE = "What's new"
+NEWS_KEY = 'HMOD_NEWS'
+WINDOW_KEY = 'HMOD_MODS_TEXT'
 
 
 def title(ctx, lang):
@@ -84,22 +87,32 @@ def add_news(ctx, count):
     r = scroll_text(recs)
     old = E.text(r.get(E.TEXT))
     assert old.startswith('\n\n\n|GOLD26**|Quality of Life 4 Update'), old[:60]
-    lang = ctx.language
-    tr = lambda text: ctx.tr(text, lang)  # noqa: E731
-    news = (f'\n\n\n{title(ctx, lang)}\n\n'
+    texts = {}
+    for lang in ctx.languages:
+        tr = lambda text: ctx.tr(text, lang)  # noqa: E731
+        texts[lang] = (
+            f'\n\n\n{title(ctx, lang)}\n\n'
             f"⦿ {tr('{count} unofficial mods are installed. |YELLOW|Mods|!| in the main menu lists them.').format(count=count)}\n"
             f"⦿ {tr('To add or remove mods, close the game, edit |YELLOW|mods/recommended.txt|!| and run the installer again.')}\n"
             f"⦿ {tr('Updates, details and bug reports: |YELLOW|{url}|!|').format(url=URL)}\n"
             f'\n|GOLD26**|{tr(WHATS_NEW_TITLE)}|!|\n\n'
-            + ''.join(f'⦿ {version}: {tr(text)}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS]))
-    # The game's own 1.2.39 notes below are English in every language.
-    r.set(E.TEXT, E.set_text(r.get(E.TEXT), news + old))
+            + ''.join(f'⦿ {version}: {tr(text)}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS])
+            + old)      # the game's own 1.2.39 notes, English in every language
+    ctx.set_localized('core', NEWS_KEY, texts)
+    to_label(r, NEWS_KEY)
     ctx.write(NEWS, E.pack(recs))
 
 
+def to_label(r, key):
+    """Show the localized text of key in the record instead of its plain text, so it follows the
+    game's language."""
+    i, = r.find(E.TEXT)
+    r.comps[i] = [E.LABEL, E.localized_label(r.comps[i][1], key)]
+
+
 def short(description):
-    """A mod's DESCRIPTION for the window, without "(DLL patch)". A plain text component shows %
-    as it is (%% is only needed in texts with chains)."""
+    """A mod's DESCRIPTION for the window, without "(DLL patch)". The window's label shows % as it
+    is (%% is only needed in texts with chains)."""
     return re.sub(r'\s*\((?:entity )?DLL patch\)$', '', description)
 
 
@@ -112,13 +125,16 @@ def mods_window(ctx):
         mod = module_from_spec(spec)
         spec.loader.exec_module(mod)
         descriptions.append((name, short(mod.DESCRIPTION)))
-    lang = ctx.language
-    tr = lambda text: ctx.tr(text, lang)  # noqa: E731
-    lines = [f'⦿ |YELLOW|{name}|!|: {tr(d)}' for name, d in descriptions]
-    text = (f'\n\n\n{title(ctx, lang)}\n\n'
+    texts = {}
+    for lang in ctx.languages:
+        tr = lambda text: ctx.tr(text, lang)  # noqa: E731
+        lines = [f'⦿ |YELLOW|{name}|!|: {tr(d)}' for name, d in descriptions]
+        texts[lang] = (
+            f'\n\n\n{title(ctx, lang)}\n\n'
             f"{tr('Unofficial fixes for Hammerting 1.2.39. Details, updates and bug reports: |YELLOW|{url}|!|').format(url=URL)}\n\n"
             f"{tr('To change which mods are installed, close the game, edit |YELLOW|mods/recommended.txt|!| in the mods folder and run the installer again.')}\n\n"
             f"|GOLD20**|{tr('Installed mods ({count}):').format(count=len(lines))}|!|\n" + '\n'.join(lines) + '\n')
+    ctx.set_localized('core', WINDOW_KEY, texts)
     recs = E.parse(ctx.read(NEWS))      # the original window, without the news section
     root = recs[0]
     root.set(E.ID, E.tag(WINDOW_ID))
@@ -131,8 +147,7 @@ def mods_window(ctx):
     assert r.get(CHAIN) == b'\x01' + compile_chain("PARENT.PARENT.BOUNDS_SET_Y(FLOAT('0'))")
     r.set(CHAIN, b'\x01' + compile_chain(
         "PARENT.PARENT.BOUNDS_SET_POS(UI_RESOLUTION.X.DIV('2'), UI_RESOLUTION.Y.DIV('2'))"))
-    r = scroll_text(recs)
-    r.set(E.TEXT, E.set_text(r.get(E.TEXT), text))
+    to_label(scroll_text(recs), WINDOW_KEY)
     ctx.write(WINDOW, E.pack(recs))
     return len(descriptions)
 
