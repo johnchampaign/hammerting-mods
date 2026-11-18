@@ -151,7 +151,7 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - Clearer tooltips for tear-down orders, attributes, and alerts about dwarves away on the
   overworld. (`teardown_hint`, `attribute_hint`, `away_dwarf_alerts`)
 - Blocks you place above walkways stay put. (`keep_placed_blocks`)
-- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.3", so you can see the mods
+- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.4", so you can see the mods
   are loaded. The patch notes window starts with a note about the mods, and a **Mods** button in
   the main menu lists every installed mod. (`mods_menu`)
 
@@ -168,6 +168,20 @@ speakers: corrections are welcome as an issue or a pull request to `mods/transla
 The Underworld, the only source of Sulphur Sprouts, is at the bottom of the map. To have it
 closer, pick **Mountain Size: Small** when you start a new game: the map is 800 x 800 tiles instead of
 the default 1088 x 1088 (1024 plus a border).
+
+## Troubleshooting
+
+- **The game closes without a message when it saves (manual save or autosave).** Windows Security's
+  *Controlled folder access* (Virus & threat protection → Ransomware protection) blocks programs it
+  doesn't know from writing to Documents, where the game keeps its saves. Allow the game through
+  it: *Allow an app through Controlled folder access* → add `boot.exe` from the Hammerting folder.
+  Other antivirus programs can do the same, as can a Documents folder kept in OneDrive.
+- **To tell whether a problem comes from the mods,** run `uninstall.bat` (or `./uninstall.sh`) and
+  try again. Clearing the Launch Options alone isn't enough, because the installer also patches the
+  game's DLLs. Steam's "Verify integrity of game files" also gives you the unmodded game.
+- **Bug reports:** the end of the newest log in `Documents\My Games\Warpzone Studios\tdtd\Sessions\`
+  and, for a crash without a message on Windows, the "Application Error" entry for boot.exe in Event
+  Viewer (Windows Logs → Application) help most.
 
 ## Notes
 

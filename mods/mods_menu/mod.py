@@ -4,7 +4,7 @@
   Both are a text whose one %Oproperty_comp shows the chain GAME_VERSION (ui/main_menu/main_menu
   and ui/version_ingame); the mod appends to the chain.
 - The news window (ui/main_menu/newsletter, the patch notes shown at start and by Newsletter) gets
-  a section about the mods above the 1.2.39 notes, ending with what changed in the latest versions
+  a section about the mods above the 1.2.39 notes, ending with what changed in every version
   (WHATS_NEW). Its text is one plain text component.
 - A Mods button between Credits and Exit (main menu and pause menu) opens a window listing every
   installed mod with its description. The buttons are records under LABEL__BUTTONS in
@@ -27,9 +27,10 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.6.3'
-# Shown in the news window, newest first; the first NEWS_VERSIONS entries are listed. Keep each to a line or two.
+MODS_VERSION = '1.6.4'
+# Shown in the news window, newest first, every release. Keep each to a line or two.
 WHATS_NEW = [
+    ('1.6.4', 'The news now lists every release, not only the latest three.'),
     ('1.6.3', 'The Mods window and the news now follow the language in Options too, without running the '
               'installer again.'),
     ('1.6.2', 'Opening and closing the language list in Options no longer crashes the game.'
@@ -41,8 +42,15 @@ WHATS_NEW = [
               '"working" but not moving, gives up the step after 10 seconds and finds a new route. Not installed '
               'by default; add it to |YELLOW|mods/recommended.txt|!| to try it.'),
     ('1.4.0', 'Ripe crops are harvested promptly instead of standing until you press Harvest on each plant.'),
+    ('1.3.0', 'Farmers harvested ripe wild plants on their own (replaced by the harvest fix in 1.4.0). The optional '
+              'small map mod was removed: Mountain Size: Small in the new-game menu does the same.'),
+    ('1.2.0', 'The menus show the mods version, this news section was added, and a |YELLOW|Mods|!| button in the '
+              'main menu lists the installed mods.'),
+    ('1.1.0', 'Mountainking of Lore appears under Victory Conditions with your research and lore against the '
+              'targets. Linux install scripts.'),
+    ('1.0.0', 'First release: 53 fixes, including reachable Righteous Affluence and World Conquest victories and '
+              'the new Mountainking of Lore research victory.'),
 ]
-NEWS_VERSIONS = 3
 URL = 'github.com/johnchampaign/hammerting-mods'
 
 DESCRIPTION = 'Menus show the mods version and news, and a Mods button lists the installed mods'
@@ -96,7 +104,7 @@ def add_news(ctx, count):
             f"⦿ {tr('To add or remove mods, close the game, edit |YELLOW|mods/recommended.txt|!| and run the installer again.')}\n"
             f"⦿ {tr('Updates, details and bug reports: |YELLOW|{url}|!|').format(url=URL)}\n"
             f'\n|GOLD26**|{tr(WHATS_NEW_TITLE)}|!|\n\n'
-            + ''.join(f'⦿ {version}: {tr(text)}\n' for version, text in WHATS_NEW[:NEWS_VERSIONS])
+            + ''.join(f'⦿ {version}: {tr(text)}\n' for version, text in WHATS_NEW)
             + old)      # the game's own 1.2.39 notes, English in every language
     ctx.set_localized('core', NEWS_KEY, texts)
     to_label(r, NEWS_KEY)
