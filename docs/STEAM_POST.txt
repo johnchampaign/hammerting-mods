@@ -3,7 +3,7 @@
 Hammerting stopped getting updates after 1.0, and it still has crashes, soft-locks, dwarves who wander into lava, hauling loops and two victory conditions that are practically out of reach. I played it through to the end and fixed what I hit along the way. The result is a free, open-source set of 53 mods.
 
 [b]Download:[/b] [url=https://github.com/johnchampaign/hammerting-mods/releases/latest]github.com/johnchampaign/hammerting-mods[/url] (choose "Source code (zip)")
-[b]Latest version:[/b] 1.6.4 (18 November 2026)
+[b]Latest version:[/b] 1.6.5 (18 November 2026)
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 
@@ -14,6 +14,7 @@ No game files are included. The installer reads your own copy of the game and pa
 [*]The translations were made with an AI model, using the game's own terms. Corrections from native speakers are welcome on GitHub or in this thread.
 [*]1.6.2: opening and closing the language list in Options no longer crashes the game. The mods had been saving some of the game's text tables in a damaged form since early versions.
 [*]1.6.4: the news window at startup lists every release of the mods, not only the latest three.
+[*]1.6.5: rough gems have their name and icon again and can be cut further. Every cut now keeps the gem's kind, so a Star of Mara takes 9 gems of one kind (still not 243). Gems cut as nameless before stay that way.
 [/list]
 
 [h2]What's new in 1.5[/h2]
@@ -45,7 +46,7 @@ No game files are included. The installer reads your own copy of the game and pa
 [*][b]Righteous Affluence is reachable.[/b] A Large Vault holds 2,000 gold and needs to be 10% full, instead of 100% of 50,000 gold.
 [*][b]World Conquest[/b] needs a third of the overworld owned or allied instead of all of it.
 [*][b]New victory, Mountainking of Lore:[/b] finish the whole research tree and hold 100 Mountain Lore and 100 Trade Lore. Your progress shows under Victory Conditions.
-[*]A Star of Mara costs 9 gems of any kind instead of 243 gems of one kind.
+[*]A Star of Mara costs 9 gems of one kind instead of 243.
 [*]The Victory Conditions panel shows how full your vaults are against the target.
 [/list]
 

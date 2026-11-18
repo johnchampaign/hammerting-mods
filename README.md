@@ -85,7 +85,7 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
   (`reachable_diplomacy`)
 - **New victory, Mountainking of Lore:** finish the research tree and hold 100 Mountain Lore and
   100 Trade Lore. Victory Conditions shows your progress. (`research_victory`)
-- A Star of Mara costs 9 gems of any kind instead of 243 gems of one kind. (`gem_cut_rebalance`)
+- A Star of Mara costs 9 gems of one kind instead of 243. (`gem_cut_rebalance`)
 
 **Crashes and soft-locks**
 - No crash when completing faction alliance quests such as Dwarven Licorice. (`relation_crash_guard`)
@@ -151,7 +151,7 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - Clearer tooltips for tear-down orders, attributes, and alerts about dwarves away on the
   overworld. (`teardown_hint`, `attribute_hint`, `away_dwarf_alerts`)
 - Blocks you place above walkways stay put. (`keep_placed_blocks`)
-- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.4", so you can see the mods
+- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.5", so you can see the mods
   are loaded. The patch notes window starts with a note about the mods, and a **Mods** button in
   the main menu lists every installed mod. (`mods_menu`)
 

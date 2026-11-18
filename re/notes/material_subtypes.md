@@ -184,7 +184,8 @@ extracted files `database/recipe/*.bin` (record = 16 + i*0xec8; rmmod = +0xe68+s
   CLS_RAIL_TRACK #8 0x84b8 (slot 0): metal parts stop carrying the ingot kind.
 - recipe_white_anvil_cdb.bin CLS_GEM_ROUGH_CUT #3 0x3ad0: rough gems lose the raw kind, so the
   chain needs only triples of one raw kind for the first step (81 triples), not 243 of one kind.
-  Shipped as `mods/gem_cut_rebalance` (2026-11-12), with counts Rough 3, Cabochon/Trilliant/Brilliant 1, Star 3 and the
+  Shipped as `mods/gem_cut_rebalance` (2026-11-12; in 1.6.5 the kind is kept again, since cut gems take their name
+  and icon from it and kindless rough gems showed blank and could not be picked for the next cut), with counts Rough 3, Cabochon/Trilliant/Brilliant 1, Star 3 and the
   same byte on the Star slot (#7, 0x75f0), so a Star costs 9 raw gems of any kind.
 Trade-off: the material modifiers may feed item stats/price (ME_* entries); not checked.
 Under C these rmmod bytes also make the slot relaxed.

@@ -4,7 +4,7 @@ Title: I fixed 53 bugs in Hammerting so it can actually be finished: free mod pa
 
 Hammerting stopped getting updates after 1.0, and it still has crashes, soft-locks, dwarves who wander into lava, hauling loops and two victory conditions that are practically out of reach. I played it through to the end and fixed what I hit along the way. The result is a free, open-source set of 53 mods.
 
-**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.6.4.
+**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.6.5.
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 
@@ -15,7 +15,7 @@ No game files are included. The installer reads your own copy of the game and pa
 * **Righteous Affluence is reachable.** A Large Vault holds 2,000 gold and needs to be 10% full, instead of 100% of 50,000 gold.
 * **World Conquest** needs a third of the overworld owned or allied instead of all of it.
 * **New victory, Mountainking of Lore:** finish the whole research tree and hold 100 Mountain Lore and 100 Trade Lore. Your progress shows under Victory Conditions.
-* A Star of Mara costs 9 gems of any kind instead of 243 gems of one kind.
+* A Star of Mara costs 9 gems of one kind instead of 243.
 * The Victory Conditions panel shows how full your vaults are against the target.
 
 **Crashes and soft-locks**
