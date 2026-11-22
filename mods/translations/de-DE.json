@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Eine Lore, die während einer Lieferung 30 Spielsekunden stillsteht, gibt sie auf, sodass der Auftrag neu vergeben wird",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Ein Hammerting oder Gruppengespräch wirkt auf jedes Zwergenpaar etwa so stark wie ein einzelnes Gespräch",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Ein Hammerting beginnt innerhalb von 120 s, auch wenn ein Zwerg feststeckt",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Ein Stern von Mara kostet 9 raue Juwelen beliebiger Art statt 243 einer Art (benötigt class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Bergweisheit: %Oproperty_comp / 100",
  "Mountainking of Lore": "Bergkönig der Weisheit",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Bergkönig der Weisheit erscheint unter Siegbedingungen, mit deiner Forschung und Weisheit im Vergleich zu den Zielen. Installationsskripte für Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Neue Mod |YELLOW|cart_timeout|!|: Eine Lore, die mitten in einer Lieferung 30 Sekunden stillsteht, gibt sie auf, sodass der Auftrag neu vergeben wird, statt dass das Gebäude für immer wartet.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Neue optionale Mod |YELLOW|stairs_timeout|!|: Ein Zwerg, der auf halbem Weg eine Schräge hinauf oder hinunter erstarrt, noch „arbeitet“, sich aber nicht bewegt, gibt den Schritt nach 10 Sekunden auf und sucht einen neuen Weg. Nicht standardmäßig installiert; füge sie zu |YELLOW|mods/recommended.txt|!| hinzu, um sie auszuprobieren.",
  "New storages take loose items from the ground by default": "Neue Lager nehmen standardmäßig herumliegende Gegenstände vom Boden auf",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Neuer Sieg: alles Wissen erlangt plus 100 Bergweisheit und 100 Handelsweisheit",

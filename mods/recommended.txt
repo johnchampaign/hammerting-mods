@@ -50,6 +50,7 @@ away_dwarf_alerts
 left_incline_rail
 building_self_repair
 rail_queue_keep
+cart_timeout
 gem_cut_rebalance
 research_victory
 harvest_priority

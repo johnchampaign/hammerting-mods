@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Wagonik, który stoi 30 sekund gry w trakcie dostawy, rezygnuje z niej, a zadanie zostaje zaoferowane ponownie",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Hammerting lub rozmowa grupowa wpływa na opinie każdej pary krasnoludów mniej więcej tak jak jedna rozmowa",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Hammerting rozpoczyna się w ciągu 120 s, nawet jeśli któryś krasnolud utknął",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Gwiazda Mary kosztuje 9 surowych klejnotów dowolnego rodzaju, a nie 243 jednego rodzaju (wymaga class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Wiedza o Górze: %Oproperty_comp / 100",
  "Mountainking of Lore": "Król wiedzy we wnętrzu Góry",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Król wiedzy we wnętrzu Góry pojawia się w Warunkach zwycięstwa, z twoimi badaniami i wiedzą na tle celów. Skrypty instalacyjne dla Linuksa.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Nowy mod |YELLOW|cart_timeout|!|: wagonik, który stoi 30 sekund w połowie dostawy, rezygnuje z niej, a zadanie zostaje zaoferowane ponownie, zamiast pozostawiać budynek w nieskończonym oczekiwaniu.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Nowy opcjonalny mod |YELLOW|stairs_timeout|!|: krasnolud zastygły w połowie drogi w górę lub w dół zbocza, wciąż „pracujący”, ale nieruchomy, po 10 sekundach rezygnuje z kroku i znajduje nową trasę. Domyślnie nie jest instalowany; aby go wypróbować, dodaj go do |YELLOW|mods/recommended.txt|!|.",
  "New storages take loose items from the ground by default": "Nowe składy domyślnie zabierają luźne przedmioty z ziemi",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Nowe zwycięstwo: wszystkie badania ukończone oraz 100 Wiedzy o Górze i 100 Wiedzy o handlu",

@@ -262,6 +262,13 @@ Source shorthand:
       **The cargo cart stall did not reproduce (Nov 2026):** Carts delivered 30 items to a chest and ended empty, in 3 runs, including after
       three reloads in a row. Trips were few and short, and a save during a trip was not tested. The detailed reports predate 1.2.39; the
       2025 ones are one line each.
+    - **New report (Steam, 2026-11-20):** about 20 Handcars, 5-10 Carts and 6 ore grinders; now and then a Cart takes ore for a smelter
+      and never delivers, and the smelter waits until its production is paused and unpaused. **Mod:** `cart_timeout` fails a Cart's
+      haul once it has stood still for 30 game seconds during it, dropping its own route entry, so the job is offered again (the same
+      exit pausing takes). Tested 2026-11-22 on a copy of SouthXanforge savegame75 (one Cart, 3679): at a 1-second limit it never fired
+      in 3 minutes of the Cart hauling (a hauling Cart never stood still; it stood still only between jobs); at 0.05 s it failed the
+      Cart's haul on every tick, about 1,700 times, and the Cart took the job straight back each time, with no exceptions. The stall
+      itself was not reproduced.
     - FINAL (Oct 2023, 2025). **C**.
     - Sources: S1/2958292387827395207, S0/3887226763718533547, S1/4241812037675269814.
 

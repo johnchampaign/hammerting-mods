@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Вагонетка, простоявшая 30 игровых секунд во время доставки, отказывается от нее, и работа предлагается заново",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Hammerting или общая беседа меняет отношения каждой пары дворфов примерно так же, как одна беседа",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Hammerting начинается не позже чем через 120 с, даже если какой-то дворф застрял",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Марийская звезда стоит 9 сырьевых самоцветов любого вида, а не 243 одного вида (нужен class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Знания о горе: %Oproperty_comp / 100",
  "Mountainking of Lore": "Король горы знаний",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "«Король горы знаний» появляется в «Условиях победы» с вашими исследованиями и знаниями в сравнении с целями. Скрипты установки для Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Новый мод |YELLOW|cart_timeout|!|: вагонетка, простоявшая 30 секунд посреди доставки, отказывается от нее, и работа предлагается заново, а здание больше не ждет вечно.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Новый необязательный мод |YELLOW|stairs_timeout|!|: дворф, застывший на полпути вверх или вниз по склону, который «работает», но не двигается, через 10 секунд бросает шаг и ищет новый маршрут. По умолчанию не устанавливается; чтобы попробовать, добавьте его в |YELLOW|mods/recommended.txt|!|.",
  "New storages take loose items from the ground by default": "Новые склады по умолчанию забирают предметы с земли",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Новая победа: все исследования получены, плюс 100 знаний о горе и 100 знаний о торговле",

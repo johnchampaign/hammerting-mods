@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Una vagoneta detenida 30 segundos de juego durante una entrega la abandona y el trabajo se vuelve a ofrecer",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Una reunión o una charla en grupo afecta a cada pareja de enanos más o menos como una sola charla",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Una reunión empieza en menos de 120 s aunque haya un enano atascado",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Una estrella de Mara cuesta 9 gemas sin pulir de cualquier tipo, no 243 de un mismo tipo (requiere class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Sabiduría orográfica: %Oproperty_comp / 100",
  "Mountainking of Lore": "Monarca del saber",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Monarca del saber aparece en Condiciones de victoria, con tu investigación y tu saber frente a los objetivos. Scripts de instalación para Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Nuevo mod |YELLOW|cart_timeout|!|: una vagoneta que se queda quieta 30 segundos en mitad de una entrega la abandona y el trabajo se vuelve a ofrecer, en vez de que el edificio espere para siempre.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Nuevo mod opcional |YELLOW|stairs_timeout|!|: un enano que se queda congelado a mitad de una subida o bajada, todavía «trabajando» pero sin moverse, abandona el paso tras 10 segundos y busca una ruta nueva. No se instala por defecto; añádelo a |YELLOW|mods/recommended.txt|!| para probarlo.",
  "New storages take loose items from the ground by default": "Los almacenes nuevos recogen por defecto los objetos sueltos del suelo",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Nueva victoria: todas las investigaciones adquiridas más 100 de sabiduría orográfica y 100 de sabiduría comercial",

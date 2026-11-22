@@ -139,6 +139,8 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
   line. (`rail_fixes`, `ride_then_fight`, `rail_queue_keep`)
 - The unfinished left-rising incline is added to the build menu. (`left_incline_rail`)
 - Rail help text explains Handcars. (`rail_help`)
+- A Cart that stops for 30 seconds in the middle of a delivery gives it up, so the job is offered
+  again instead of the building waiting for good. (`cart_timeout`)
 
 **Missions and research**
 - Land Survey unlocks early, so you can't lock yourself out of Mountain Lore. (`early_land_survey`)
@@ -151,7 +153,7 @@ Some mods have a setting at the top of their `mod.py` (for example `TARGET_PERCE
 - Clearer tooltips for tear-down orders, attributes, and alerts about dwarves away on the
   overworld. (`teardown_hint`, `attribute_hint`, `away_dwarf_alerts`)
 - Blocks you place above walkways stay put. (`keep_placed_blocks`)
-- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.6.5", so you can see the mods
+- The version in the menu's corner reads "1.2.39.0 + Fix-Up Mods 1.7.0", so you can see the mods
   are loaded. The patch notes window starts with a note about the mods, and a **Mods** button in
   the main menu lists every installed mod. (`mods_menu`)
 

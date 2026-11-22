@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "货车在运送途中停住 30 秒游戏时间后会放弃这次运送，该任务会重新分配",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "叮锤大会或群聊对每两名矮人关系的影响与一次聊天大致相同",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "即使有矮人被卡住，叮锤大会也会在 120 秒内开始",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "一颗马拉之星需要 9 颗任意种类的原矿宝石，而非 243 颗同种宝石（需要 class_matched_inputs）",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "山地学识：%Oproperty_comp / 100",
  "Mountainking of Lore": "山大王学识",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "山大王学识会出现在胜利条件中，显示你的研究和学识与目标的对比。新增 Linux 安装脚本。",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "新模组|YELLOW|cart_timeout|!|：货车在运送途中停住 30 秒后会放弃这次运送，任务会重新分配，建筑不再无限期等待。",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "新的可选模组 |YELLOW|stairs_timeout|!|：矮人在斜坡上卡在半途，仍显示“工作中”却一动不动时，会在 10 秒后放弃这一步并寻找新路线。默认不安装；如需试用，请将其加入 |YELLOW|mods/recommended.txt|!|。",
  "New storages take loose items from the ground by default": "新仓库默认会收取地上的散落物品",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "新胜利条件：获得所有研究，并持有 100 点山地学识和 100 点贸易学识",

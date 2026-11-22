@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Um carrinho parado por 30 segundos de jogo durante uma entrega desiste dela, e o trabalho é oferecido de novo",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Um Hammerting ou uma conversa em grupo afeta cada par de anões mais ou menos como uma única conversa",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Um Hammerting começa em até 120 s, mesmo que um anão esteja preso",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Uma Estrela de Mara custa 9 Gemas In Natura de qualquer tipo, não 243 de um só tipo (requer class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Histórias da Montanha: %Oproperty_comp / 100",
  "Mountainking of Lore": "Montanha de Saber",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Montanha de Saber aparece em Condições de Vitória, com sua pesquisa e seu saber em relação às metas. Scripts de instalação para Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Novo mod |YELLOW|cart_timeout|!|: um carrinho parado por 30 segundos no meio de uma entrega desiste dela e o trabalho é oferecido de novo, em vez de o prédio esperar para sempre.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Novo mod opcional |YELLOW|stairs_timeout|!|: um anão travado no meio de uma subida ou descida, ainda \"trabalhando\" mas sem se mexer, desiste do passo após 10 segundos e encontra uma nova rota. Não vem instalado por padrão; adicione-o a |YELLOW|mods/recommended.txt|!| para experimentar.",
  "New storages take loose items from the ground by default": "Novos armazéns recolhem itens soltos do chão por padrão",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Nova vitória: todas as pesquisas adquiridas mais 100 Histórias da Montanha e 100 Histórias de Comércio",

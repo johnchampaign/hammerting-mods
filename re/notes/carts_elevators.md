@@ -180,6 +180,13 @@ Four no-timeout states, all [V]:
   40 KB and I read only its vehicle branches. Arrival looks consistent. The fact that a reload clears it only says the
   state is runtime. "Can't be unloaded manually" and "20+ carts on elevator rails" have no branch either.
 - "Freeze after several save/reload cycles": not determined.
+- **`mods/cart_timeout` (2026-11-22).** A Cart's behaviour tree is BT_CART, an empty node (bt_cart_enter/update just return); its
+  deliveries are job-broker haul jobs that run the dwarves' bt_haul (0x1804ef230 update), which calls
+  station_system_is_vehicle(mainstate+0x2330, entity) and, for a vehicle, station_system_enqueue_vehicle (0x1804f0aff) instead of
+  movement_system_move_to. enqueue_vehicle first dequeues the vehicle's old entry; bt_haul_exit never dequeues it.
+  station_system_dequeue(sys, rider) removes a rider's entry from every vehicle queue, and a Cart is its own rider. The mod hooks
+  the update's entry and, for vehicles only, returns BT_FAILURE after LIMIT game seconds without a position change, after
+  dequeuing. In SouthXanforge a hauling Cart moved on every update; it stood still only between jobs, when the update doesn't run.
 
 ## Report 3: crashes
 - on_event_teardown 0x18035e980 is **wrong for two or more riders** [V]. The loop variable [rsp+0xe0] is never advanced

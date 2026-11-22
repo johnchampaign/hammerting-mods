@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Un chariot arrêté 30 secondes de jeu pendant une livraison l'abandonne, et la tâche est proposée à nouveau",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Un Hammerting ou une discussion de groupe affecte chaque paire de nains à peu près autant qu'une discussion à deux",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Un Hammerting commence dans les 120 s, même si un nain est bloqué",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Une Étoile de Mara coûte 9 gemmes brutes de n'importe quel type, et non 243 du même type (nécessite class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Connaissances de la montagne : %Oproperty_comp / 100",
  "Mountainking of Lore": "Roi sur la montagne du savoir",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Roi sur la montagne du savoir apparaît dans Conditions de victoire, avec vos recherches et votre savoir face aux objectifs. Scripts d'installation pour Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Nouveau mod |YELLOW|cart_timeout|!| : un chariot immobile pendant 30 secondes au milieu d'une livraison l'abandonne, et la tâche est proposée à nouveau, au lieu que le bâtiment attende indéfiniment.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Nouveau mod optionnel |YELLOW|stairs_timeout|!| : un nain figé à mi-pente, toujours « au travail » mais immobile, abandonne la marche au bout de 10 secondes et cherche un nouvel itinéraire. Non installé par défaut ; ajoutez-le à |YELLOW|mods/recommended.txt|!| pour l'essayer.",
  "New storages take loose items from the ground by default": "Les nouveaux entrepôts ramassent par défaut les objets au sol",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Nouvelle victoire : toutes les recherches acquises, plus 100 Connaissances de la montagne et 100 Connaissances commerciales",

@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "配達中にゲーム内で30秒止まった貨車は配達をあきらめ、その仕事が再び割り当てられる",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Hammertingや集団での交流によるドワーフ同士の関係の変化が、1回の交流とほぼ同じになる",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "ドワーフが動けなくなっていても、Hammertingは120秒以内に始まる",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "マラの星の材料が、同じ種類の原石の宝石243個ではなく、種類を問わず9個になる（class_matched_inputsが必要）",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "山の知識: %Oproperty_comp / 100",
  "Mountainking of Lore": "知識の霊峰の王",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "知識の霊峰の王が勝利条件に表示され、研究と知識の目標に対する進捗がわかるようになりました。Linux用のインストールスクリプトを追加しました。",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "新しいMOD |YELLOW|cart_timeout|!|：配達の途中で30秒止まったままの貨車は配達をあきらめ、その仕事が再び割り当てられるようになりました。建物がいつまでも待たされることはありません。",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "新しい任意のMod |YELLOW|stairs_timeout|!|：坂の上り下りの途中で固まり、「作業中」のまま動かなくなったドワーフが、10秒後にその一歩をあきらめて新しい経路を探す。初期状態ではインストールされない。試すには|YELLOW|mods/recommended.txt|!|に追加しよう。",
  "New storages take loose items from the ground by default": "新しい倉庫が、初期設定で床に落ちている品物を受け入れる",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "新しい勝利条件：すべての研究を習得し、山の知識と交易知識をそれぞれ100保有する",

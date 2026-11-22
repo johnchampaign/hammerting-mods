@@ -1,4 +1,5 @@
 {
+ "A Cart stopped for 30 game seconds during a delivery gives it up, so the job is offered again": "Un carrello fermo per 30 secondi di gioco durante una consegna la abbandona, e il lavoro viene offerto di nuovo",
  "A Hammerting or group chat changes each pair of dwarves about as much as one chat": "Un Hammerting o una conversazione di gruppo cambia ogni coppia di nani più o meno quanto una singola conversazione",
  "A Hammerting starts within 120 s even if a dwarf is stuck": "Un Hammerting inizia entro 120 s anche se un nano è bloccato",
  "A Star of Mara costs 9 raw gems of any kind, not 243 of one kind (needs class_matched_inputs)": "Una Stella di Mara costa 9 gemme naturali di qualsiasi tipo, non 243 dello stesso tipo (richiede class_matched_inputs)",
@@ -70,6 +71,7 @@
  "Mountain Lore: %Oproperty_comp / 100": "Saggezza della montagna: %Oproperty_comp / 100",
  "Mountainking of Lore": "Re della Montagna sapiente",
  "Mountainking of Lore appears under Victory Conditions with your research and lore against the targets. Linux install scripts.": "Re della Montagna sapiente compare in Condizioni per la vittoria, con le tue ricerche e il tuo sapere rispetto agli obiettivi. Script di installazione per Linux.",
+ "New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives it up, so the job is offered again, instead of the building waiting for good.": "Nuova mod |YELLOW|cart_timeout|!|: un carrello fermo per 30 secondi nel mezzo di una consegna la abbandona e il lavoro viene offerto di nuovo, invece di lasciare l'edificio ad aspettare per sempre.",
  "New optional mod |YELLOW|stairs_timeout|!|: a dwarf frozen partway up or down a slope, still \"working\" but not moving, gives up the step after 10 seconds and finds a new route. Not installed by default; add it to |YELLOW|mods/recommended.txt|!| to try it.": "Nuova mod facoltativa |YELLOW|stairs_timeout|!|: un nano bloccato a metà di una salita o di una discesa, che risulta \"al lavoro\" ma non si muove, rinuncia al passo dopo 10 secondi e trova un nuovo percorso. Non è installata di default; aggiungila a |YELLOW|mods/recommended.txt|!| per provarla.",
  "New storages take loose items from the ground by default": "I nuovi magazzini raccolgono di default gli oggetti sparsi a terra",
  "New victory: every research topic acquired plus 100 Mountain Lore and 100 Trade Lore": "Nuova vittoria: tutte le ricerche acquisite più 100 Saggezza della montagna e 100 Saggezza commerciale",

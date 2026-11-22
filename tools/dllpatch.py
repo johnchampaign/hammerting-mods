@@ -35,7 +35,7 @@ GAME_DLL = os.path.join(GAME_DIR, 'game.x86_64.dll')
 BACKUP = GAME_DLL + '.hmod-orig'
 IMAGE_BASE = 0x180000000
 CAVE_VA = 0x18060c000          # .hmod: the first page after the original image
-CAVE_SIZE = 0x3000
+CAVE_SIZE = 0x4000
 CAVE_BSS = 0x10000             # after the file-backed part: stranded_rescue's per-entity counters
 
 

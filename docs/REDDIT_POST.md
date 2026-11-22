@@ -4,7 +4,7 @@ Title: I fixed 53 bugs in Hammerting so it can actually be finished: free mod pa
 
 Hammerting stopped getting updates after 1.0, and it still has crashes, soft-locks, dwarves who wander into lava, hauling loops and two victory conditions that are practically out of reach. I played it through to the end and fixed what I hit along the way. The result is a free, open-source set of 53 mods.
 
-**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.6.5.
+**Download:** [github.com/johnchampaign/hammerting-mods](https://github.com/johnchampaign/hammerting-mods/releases/latest) (choose "Source code (zip)"). Latest version: 1.7.0.
 
 No game files are included. The installer reads your own copy of the game and patches it on your PC, keeping the original files as a backup. Existing saves keep working.
 
@@ -50,6 +50,7 @@ No game files are included. The installer reads your own copy of the game and pa
 
 * Dwarves don't walk into lava and walk out if it reaches them. Furnaces don't burn the lava you need for Sulphur Sprouts, and a lava pump isn't stopped by stored water.
 * Handcar fixes: riders don't get stuck in queues, don't fight from a moving cart, and keep their place in line. The unfinished left-rising incline rail is added to the build menu.
+* A Cart that stops for 30 seconds in the middle of a delivery gives it up, so the job is offered again instead of the building waiting for good.
 * Land Survey unlocks early, so you can't lock yourself out of Mountain Lore. Discovery missions count rooms you found before the mission started. Dwarven Subversion is only offered at capitals you have found.
 * Warnings when the vault can't pay for a purchase or is nearly empty, plus clearer tooltips.
 

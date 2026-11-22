@@ -27,9 +27,11 @@ import entity as E  # noqa: E402
 from evalchain import compile_chain  # noqa: E402
 from loc import Entry  # noqa: E402
 
-MODS_VERSION = '1.6.5'
+MODS_VERSION = '1.7.0'
 # Shown in the news window, newest first, every release. Keep each to a line or two.
 WHATS_NEW = [
+    ('1.7.0', 'New mod |YELLOW|cart_timeout|!|: a Cart that stands still for 30 seconds in the middle of a delivery gives '
+              'it up, so the job is offered again, instead of the building waiting for good.'),
     ('1.6.5', 'Rough gems are named again and can be cut further. Each cut keeps the gem\'s kind, so a Star of Mara '
               'takes 9 gems of one kind (still not 243).'),
     ('1.6.4', 'The news now lists every release, not only the latest three.'),
